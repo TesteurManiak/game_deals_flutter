@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
+import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 import 'package:maniak_game_deals/ui/deal_page/deal_page.dart';
 
 class DealCard extends StatelessWidget {
@@ -21,24 +21,7 @@ class DealCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: CachedNetworkImage(
-                imageUrl: deal.thumb,
-                height: 100,
-                width: width,
-                fit: BoxFit.cover,
-                placeholder: (_, __) =>
-                    Center(child: const CircularProgressIndicator()),
-                errorWidget: (_, __, ___) => Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.black.withOpacity(0.3),
-                  ),
-                  child: Icon(Icons.error, color: Colors.white),
-                ),
-              ),
-            ),
+            DealIcon(deal, width: width),
             const SizedBox(height: 10),
             Text(
               deal.title,

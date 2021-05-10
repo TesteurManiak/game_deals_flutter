@@ -20,4 +20,10 @@ class TextStyles {
     color: MyColors.normalPrice,
     fontSize: 9,
   );
+  static const dealTitle = TextStyle(fontSize: 24, color: MyColors.dealTitle);
+  static const dealRating = TextStyle(color: MyColors.dealRating, fontSize: 14);
+  static const dealRating2 = TextStyle(
+    color: MyColors.dealRating2,
+    fontSize: 9,
+  );
 }
