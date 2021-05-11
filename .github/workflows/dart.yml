@@ -31,11 +31,10 @@ jobs:
           git config --global user.email rouxguillaume8@gmail.com
           git config --global user.name "Guillaume Roux"
           git status
-          # git remote add origin https://${{secrets.commit_secret}}@github.com/TesteurManiak/game_deals_flutter.git
           git add .
           git branch -M main
           git commit -m "update"
-          git remote add origin https://github.com/TesteurManiak/TesteurManiak.github.io.git
+          git remote add origin https://${{secrets.commit_secret}}@github.com/TesteurManiak/game_deals_flutter.git
           git push origin main
 
       
