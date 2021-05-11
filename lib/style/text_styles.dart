@@ -26,4 +26,12 @@ class TextStyles {
     color: MyColors.dealRating2,
     fontSize: 9,
   );
+  static const buyBtn = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+  );
+  static const dealPagePrice = TextStyle(
+    color: MyColors.dealPagePrice,
+    fontSize: 16,
+  );
 }

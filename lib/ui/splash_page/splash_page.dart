@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/deals_bloc.dart';
+import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/ui/home_page/home_page.dart';
 
@@ -13,12 +14,14 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late final DealsBloc _dealsBloc;
+  late final StoresBloc _storesBloc;
 
   Future<void> _loadAllData() async {
     await Future.wait([
       _dealsBloc.fetchBestDeals(),
       _dealsBloc.fetchRecentDeals(),
       _dealsBloc.fetchCheapestDeals(),
+      _storesBloc.fetchStores(),
     ]);
   }
 
@@ -26,6 +29,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _dealsBloc = BlocProvider.of<DealsBloc>(context);
+    _storesBloc = BlocProvider.of<StoresBloc>(context);
 
     _loadAllData().then(
         (_) => Navigator.pushReplacementNamed(context, HomePage.routeName));

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:maniak_game_deals/bloc/bloc_provider.dart';
+import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
@@ -31,7 +33,20 @@ class DealCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 8),
+              Image.asset(
+                BlocProvider.of<StoresBloc>(context)
+                    .stores!
+                    .firstWhere((e) => e.storeID == deal.storeID)
+                    .images!
+                    .iconUrl!,
+                errorBuilder: (_, __, ___) => const Icon(
+                  Icons.error,
+                  color: Colors.white,
+                  size: 16,
+                ),
+              ),
+              const SizedBox(height: 8),
               Row(
                 children: [
                   Text(

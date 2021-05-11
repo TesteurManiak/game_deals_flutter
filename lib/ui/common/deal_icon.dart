@@ -27,7 +27,7 @@ class DealIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: Colors.black.withOpacity(0.3),
             ),
-            child: Icon(Icons.error, color: Colors.white),
+            child: const Icon(Icons.error, color: Colors.white),
           ),
         ),
       ),

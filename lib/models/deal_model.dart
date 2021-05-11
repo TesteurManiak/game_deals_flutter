@@ -40,8 +40,8 @@ class DealModel {
   final String? steamRatingPercent;
   final String? steamRatingCount;
   final String? steamAppID;
-  final int? releaseDate;
-  final int? lastChange;
+  final DateTime? releaseDate;
+  final DateTime? lastChange;
   final double? dealRating;
   final String thumb;
 
@@ -94,8 +94,12 @@ class DealModel {
         steamRatingPercent: json[steamRatingPercentEntry],
         steamRatingCount: json[steamRatingCountEntry],
         steamAppID: json[steamAppIDEntry],
-        releaseDate: json[releaseDateEntry],
-        lastChange: json[lastChangeEntry],
+        releaseDate: json[releaseDateEntry] != null
+            ? DateTime.fromMillisecondsSinceEpoch(json[releaseDateEntry] * 1000)
+            : null,
+        lastChange: json[lastChangeEntry] != null
+            ? DateTime.fromMillisecondsSinceEpoch(json[lastChangeEntry] * 1000)
+            : null,
         dealRating: double.tryParse(json[dealRatingEntry]) ?? null,
         thumb: json[thumbEntry],
       );

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
+import 'package:maniak_game_deals/models/store_model.dart';
 import 'package:maniak_game_deals/utils/consts.dart';
 import 'package:maniak_game_deals/extensions/extensions.dart'
     show DealSortModifier, BoolModifier;
@@ -70,6 +71,17 @@ class CheapSharkApiProvider {
           .toList();
     } catch (e) {
       throw 'getDeals: $e';
+    }
+  }
+
+  Future<List<StoreModel>> getStores() async {
+    try {
+      final response = await _dio.get(Consts.storesEndpoint);
+      return (response.data as Iterable)
+          .map<StoreModel>((e) => StoreModel.fromJson(e))
+          .toList();
+    } catch (e) {
+      throw 'getStores: $e';
     }
   }
 }

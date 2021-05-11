@@ -31,7 +31,7 @@ class _SeeAllPageState extends State<SeeAllPage> {
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              childAspectRatio: 0.9,
+              childAspectRatio: 0.8,
             ),
             itemCount: snapshot.data!.length,
             itemBuilder: (BuildContext context, int index) =>

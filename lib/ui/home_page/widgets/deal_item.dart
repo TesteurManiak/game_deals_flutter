@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:maniak_game_deals/bloc/bloc_provider.dart';
+import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
@@ -62,9 +64,27 @@ class DealItem extends StatelessWidget {
                         bottom: Radius.circular(8),
                       ),
                     ),
-                    child: Text(
-                      deal.title,
-                      style: TextStyles.dealOverlay,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            deal.title,
+                            style: TextStyles.dealOverlay,
+                          ),
+                        ),
+                        Image.asset(
+                          BlocProvider.of<StoresBloc>(context)
+                              .stores!
+                              .firstWhere((e) => e.storeID == deal.storeID)
+                              .images!
+                              .iconUrl!,
+                          errorBuilder: (_, __, ___) => const Icon(
+                            Icons.error,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

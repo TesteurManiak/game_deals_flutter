@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/my_gradients.dart';
+import 'package:maniak_game_deals/style/text_styles.dart';
 import 'package:maniak_game_deals/ui/common/elevated_gradient_button.dart';
 
 class BuyBtn extends StatelessWidget {
@@ -24,10 +25,13 @@ class BuyBtn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const SizedBox(width: 28),
-              Text('\$${deal.salePrice.toStringAsFixed(2)}'),
+              Text(
+                '\$${deal.salePrice.toStringAsFixed(2)}',
+                style: TextStyles.dealPagePrice,
+              ),
               const SizedBox(width: 28),
               ElevatedGradientButton(
-                child: Text('Buy it Online'),
+                child: const Text('Buy it Online', style: TextStyles.buyBtn),
                 gradient: MyGradients.buyBtn,
                 onPressed: () {},
                 borderRadius: BorderRadius.circular(100),
