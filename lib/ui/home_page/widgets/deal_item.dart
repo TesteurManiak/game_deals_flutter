@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
 import 'package:maniak_game_deals/ui/deal_page/deal_page.dart';
 
@@ -15,7 +16,7 @@ class DealItem extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final width = size.width * 0.6;
     return Hero(
-      tag: deal.dealID,
+      tag: deal.uid,
       child: Material(
         color: Colors.transparent,
         child: InkWell(
@@ -63,6 +64,22 @@ class DealItem extends StatelessWidget {
                     ),
                     child: Text(
                       deal.title,
+                      style: TextStyles.dealOverlay,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: height / 5,
+                  left: 0,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: MyColors.progressIndicator,
+                      borderRadius:
+                          BorderRadius.horizontal(right: Radius.circular(10)),
+                    ),
+                    child: Text(
+                      '-${deal.percentageOff}',
                       style: TextStyles.dealOverlay,
                     ),
                   ),

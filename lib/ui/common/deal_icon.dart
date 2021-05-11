@@ -12,7 +12,7 @@ class DealIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: deal.dealID,
+      tag: deal.uid,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: CachedNetworkImage(

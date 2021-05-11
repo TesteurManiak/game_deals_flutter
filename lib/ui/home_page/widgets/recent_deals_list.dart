@@ -22,7 +22,6 @@ class _RecentDealsListState extends State<RecentDealsList> {
   void initState() {
     super.initState();
     _dealsBloc = BlocProvider.of<DealsBloc>(context);
-    _dealsBloc.fetchBestDeals();
   }
 
   @override

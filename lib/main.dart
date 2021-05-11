@@ -3,7 +3,7 @@ import 'package:maniak_game_deals/bloc/bloc.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/style/themes.dart';
-import 'package:maniak_game_deals/ui/home_page/home_page.dart';
+import 'package:maniak_game_deals/ui/splash_page/splash_page.dart';
 import 'package:maniak_game_deals/utils/router.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Maniak Game Deals',
       theme: Themes.light,
-      initialRoute: HomePage.routeName,
+      initialRoute: SplashPage.routeName,
       onGenerateRoute: MyRouter.generateRoute,
     );
   }

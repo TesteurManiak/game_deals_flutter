@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:maniak_game_deals/extensions/extensions.dart'
     show StringModifier;
+import 'package:maniak_game_deals/utils/consts.dart';
 
 class DealModel {
   static const internalNameEntry = 'internalName';
@@ -42,7 +45,10 @@ class DealModel {
   final double? dealRating;
   final String thumb;
 
+  late int _id;
+
   String get percentageOff => '${savings.round()}%';
+  String get uid => '$dealID-$internalName-$title-$_id';
 
   DealModel({
     required this.internalName,
@@ -64,7 +70,13 @@ class DealModel {
     required this.lastChange,
     required this.dealRating,
     required this.thumb,
-  });
+  }) {
+    final random = Random();
+    _id = random.nextInt(1000000);
+    while (Consts.registeredHeroId.contains(_id)) {
+      _id = random.nextInt(1000000);
+    }
+  }
 
   factory DealModel.fromJson(json) => DealModel(
         internalName: json[internalNameEntry],

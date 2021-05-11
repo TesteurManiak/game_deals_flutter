@@ -4,6 +4,7 @@ import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/other_deals.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/recent_deals_list.dart';
+import 'package:maniak_game_deals/ui/see_all_page/see_all_page.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -26,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _dealsBloc = BlocProvider.of<DealsBloc>(context);
-    _dealsBloc.fetchRecentDeals();
   }
 
   @override
@@ -55,7 +55,39 @@ class _HomePageState extends State<HomePage> {
                   if (!snapshot.hasData || snapshot.data == null)
                     return const CircularProgressIndicator();
                   if (snapshot.data!.isEmpty) return const Text('No deals');
-                  return OtherDeals('New deals', _dealsBloc.top10RecentDeals);
+                  return OtherDeals(
+                    'Newest deals',
+                    _dealsBloc.top10RecentDeals,
+                    () => Navigator.pushNamed(
+                      context,
+                      SeeAllPage.routeName,
+                      arguments: [
+                        _dealsBloc.onRecentDealsChanged,
+                        'Newest deals'
+                      ],
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: 24),
+              StreamBuilder<List<DealModel>?>(
+                stream: _dealsBloc.onCheapestDealsChanged,
+                builder: (_, snapshot) {
+                  if (!snapshot.hasData || snapshot.data == null)
+                    return const CircularProgressIndicator();
+                  if (snapshot.data!.isEmpty) return const Text('No deals');
+                  return OtherDeals(
+                    'Cheapest deals',
+                    _dealsBloc.top10CheapestDeals,
+                    () => Navigator.pushNamed(
+                      context,
+                      SeeAllPage.routeName,
+                      arguments: [
+                        _dealsBloc.onCheapestDealsChanged,
+                        'Cheapest deals'
+                      ],
+                    ),
+                  );
                 },
               ),
             ],

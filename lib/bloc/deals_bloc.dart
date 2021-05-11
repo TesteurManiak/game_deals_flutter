@@ -22,6 +22,19 @@ class DealsBloc implements BlocBase {
     }
   }
 
+  final _cheapestDealsController =
+      BehaviorSubject<List<DealModel>?>.seeded(null);
+  Stream<List<DealModel>?> get onCheapestDealsChanged =>
+      _cheapestDealsController.stream;
+  List<DealModel>? get cheapestDeals => _cheapestDealsController.value;
+  List<DealModel>? get top10CheapestDeals {
+    if (cheapestDeals != null && cheapestDeals!.length >= 10) {
+      return cheapestDeals!.sublist(0, 10);
+    } else {
+      return cheapestDeals;
+    }
+  }
+
   final _savingDealsController = BehaviorSubject<List<DealModel>?>.seeded(null);
   Stream<List<DealModel>?> get onSavingDealsChanged =>
       _savingDealsController.stream;
@@ -29,6 +42,7 @@ class DealsBloc implements BlocBase {
 
   @override
   void dispose() {
+    _cheapestDealsController.close();
     _bestDealsController.close();
     _newestDealsController.close();
     _savingDealsController.close();
@@ -45,5 +59,10 @@ class DealsBloc implements BlocBase {
   Future<void> fetchRecentDeals() async {
     final fetchedDeals = await apiRepository.getDeals(sortBy: DealSort.recent);
     _newestDealsController.sink.add(fetchedDeals);
+  }
+
+  Future<void> fetchCheapestDeals() async {
+    final fetchedDeals = await apiRepository.getDeals(sortBy: DealSort.price);
+    _cheapestDealsController.sink.add(fetchedDeals);
   }
 }

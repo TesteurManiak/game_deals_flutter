@@ -8,8 +8,9 @@ class OtherDeals extends StatelessWidget {
   final double height;
   final List<DealModel>? deals;
   final String title;
+  final VoidCallback seeAllCallback;
 
-  OtherDeals(this.title, this.deals, {this.height = 168});
+  OtherDeals(this.title, this.deals, this.seeAllCallback, {this.height = 168});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class OtherDeals extends StatelessWidget {
             Text(title, style: TextStyles.categoryTitle),
             Expanded(child: Container()),
             TextButton(
-              onPressed: () {},
+              onPressed: seeAllCallback,
               child: const Text('See all'),
             ),
             const SizedBox(width: 10),
