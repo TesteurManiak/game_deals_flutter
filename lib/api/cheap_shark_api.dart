@@ -84,4 +84,14 @@ class CheapSharkApiProvider {
       throw 'getStores: $e';
     }
   }
+
+  Future getDealLookup(String dealId) async {
+    try {
+      final response = await _dio
+          .get(Consts.lookUpEndpoint.replaceFirst('{deal_id}', dealId));
+      return response.data;
+    } catch (e) {
+      throw 'getDealLookup: $e';
+    }
+  }
 }

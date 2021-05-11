@@ -89,7 +89,7 @@ class DealItem extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  bottom: height / 5,
+                  top: 10,
                   left: 0,
                   child: Container(
                     padding: const EdgeInsets.all(8),
