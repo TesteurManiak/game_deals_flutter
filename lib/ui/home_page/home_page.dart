@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Game Store'),
+          automaticallyImplyLeading: false,
           bottom: TabBar(
             isScrollable: true,
             tabs: _tabs.map((e) => Tab(text: e)).toList(),

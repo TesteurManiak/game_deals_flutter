@@ -14,7 +14,7 @@ class DealIcon extends StatelessWidget {
     return Hero(
       tag: deal.dealID,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         child: CachedNetworkImage(
           imageUrl: deal.thumb,
           height: height,

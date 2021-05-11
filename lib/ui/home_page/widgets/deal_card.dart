@@ -12,39 +12,42 @@ class DealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(12),
-      onTap: () =>
-          Navigator.pushNamed(context, DealPage.routeName, arguments: deal),
-      child: Container(
-        width: width,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DealIcon(deal, width: width),
-            const SizedBox(height: 10),
-            Text(
-              deal.title,
-              style: TextStyles.dealCard,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Text(
-                  '\$${deal.salePrice.toStringAsFixed(2)}',
-                  style: TextStyles.salePrice,
-                ),
-                if (deal.isOnSale) const SizedBox(width: 10),
-                if (deal.isOnSale)
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(10),
+        onTap: () =>
+            Navigator.pushNamed(context, DealPage.routeName, arguments: deal),
+        child: Container(
+          width: width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              DealIcon(deal, width: width),
+              const SizedBox(height: 10),
+              Text(
+                deal.title,
+                style: TextStyles.dealCard,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
                   Text(
-                    '\$${deal.normalPrice.toStringAsFixed(2)}',
-                    style: TextStyles.normalPrice,
-                  )
-              ],
-            ),
-          ],
+                    '\$${deal.salePrice.toStringAsFixed(2)}',
+                    style: TextStyles.salePrice,
+                  ),
+                  if (deal.isOnSale) const SizedBox(width: 10),
+                  if (deal.isOnSale)
+                    Text(
+                      '\$${deal.normalPrice.toStringAsFixed(2)}',
+                      style: TextStyles.normalPrice,
+                    )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

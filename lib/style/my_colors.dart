@@ -18,4 +18,7 @@ class MyColors {
   static const dealTitle = Color(0xFF262626);
   static const dealRating = Color(0xFF3C3C3A);
   static const dealRating2 = Color(0xFF545454);
+  static const priceContainer = Color(0xFFF9F9F9);
+  static const buyBtnShadow = Color(0xFFF64C32);
+  static const progressIndicator = Color(0xFFFA5F35);
 }

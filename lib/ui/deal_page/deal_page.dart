@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
-import 'package:maniak_game_deals/style/text_styles.dart';
-import 'package:maniak_game_deals/ui/common/deal_icon.dart';
+import 'package:maniak_game_deals/ui/deal_page/widgets/buy_btn.dart';
+import 'package:maniak_game_deals/ui/deal_page/widgets/game_header.dart';
 
 class DealPage extends StatefulWidget {
   static const routeName = '/deal';
@@ -34,50 +34,9 @@ class _DealPageState extends State<DealPage> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Row(
-            children: [
-              Container(
-                child: DealIcon(widget.deal),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      offset: Offset(0, 2),
-                      color: MyColors.shadow.withOpacity(0.5),
-                      blurRadius: 4,
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.deal.title,
-                      style: TextStyles.dealTitle,
-                    ),
-                    if (widget.deal.dealRating != null)
-                      RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: widget.deal.dealRating!.toStringAsFixed(1),
-                              style: TextStyles.dealRating,
-                            ),
-                            TextSpan(
-                              text: '/10',
-                              style: TextStyles.dealRating2,
-                            ),
-                          ],
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ],
-          )
+          GameHeader(widget.deal),
+          const SizedBox(height: 32),
+          BuyBtn(widget.deal),
         ],
       ),
     );
