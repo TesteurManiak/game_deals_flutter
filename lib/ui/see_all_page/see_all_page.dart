@@ -26,15 +26,28 @@ class _SeeAllPageState extends State<SeeAllPage> {
 
   int _pageNumber = 0;
 
+  void _loadMore() {
+    if (_isLoading) return;
+    print('FETCH PAGE: $_pageNumber');
+    _pageNumber += 1;
+    _loadingController.sink.add(true);
+    (widget.getMoreDeals(_pageNumber) as Future)
+        .then((_) => _loadingController.sink.add(false));
+  }
+
   void _scrollListener() {
-    if (!_isLoading &&
-        _scrollController.offset >=
-            _scrollController.position.maxScrollExtent) {
-      _pageNumber += 1;
-      _loadingController.sink.add(true);
-      (widget.getMoreDeals(_pageNumber) as Future)
-          .then((_) => _loadingController.sink.add(false));
+    if (_scrollController.offset >=
+        _scrollController.position.maxScrollExtent) {
+      _loadMore();
     }
+  }
+
+  bool _handleScrollNotification(ScrollNotification notification) {
+    if (notification is ScrollEndNotification &&
+        _scrollController.position.extentAfter == 0) {
+      _loadMore();
+    }
+    return false;
   }
 
   @override
@@ -69,18 +82,21 @@ class _SeeAllPageState extends State<SeeAllPage> {
                   return const CircularProgressIndicator();
                 else if (snapshot.data!.isEmpty) return const Text('No deals');
                 _pageNumber = snapshot.data!.last.pageNumber;
-                return StaggeredGridView.count(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  controller: _scrollController,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                  crossAxisSpacing: 10,
-                  crossAxisCount: crossAxisCount,
-                  children:
-                      snapshot.data!.map<Widget>((e) => DealCard(e)).toList(),
-                  staggeredTiles: List<StaggeredTile>.generate(
-                    snapshot.data!.length,
-                    (_) => StaggeredTile.fit(1),
+                return NotificationListener<ScrollNotification>(
+                  onNotification: _handleScrollNotification,
+                  child: StaggeredGridView.countBuilder(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    controller: _scrollController,
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 10,
+                    ),
+                    crossAxisSpacing: 10,
+                    crossAxisCount: crossAxisCount,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (_, int index) =>
+                        DealCard(snapshot.data![index]),
+                    staggeredTileBuilder: (_) => StaggeredTile.fit(1),
                   ),
                 );
               },
