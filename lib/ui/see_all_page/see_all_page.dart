@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/ui/common/responsive.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/deal_card.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -28,7 +29,6 @@ class _SeeAllPageState extends State<SeeAllPage> {
 
   void _loadMore() {
     if (_isLoading) return;
-    print('FETCH PAGE: $_pageNumber');
     _pageNumber += 1;
     _loadingController.sink.add(true);
     (widget.getMoreDeals(_pageNumber) as Future)
@@ -77,7 +77,7 @@ class _SeeAllPageState extends State<SeeAllPage> {
           Expanded(
             child: StreamBuilder<List<DealModel>?>(
               stream: widget.stream,
-              builder: (_, snapshot) {
+              builder: (streamContext, snapshot) {
                 if (!snapshot.hasData || snapshot.data == null)
                   return const CircularProgressIndicator();
                 else if (snapshot.data!.isEmpty) return const Text('No deals');
@@ -87,9 +87,9 @@ class _SeeAllPageState extends State<SeeAllPage> {
                   child: StaggeredGridView.countBuilder(
                     physics: AlwaysScrollableScrollPhysics(),
                     controller: _scrollController,
-                    padding: const EdgeInsets.symmetric(
+                    padding: EdgeInsets.symmetric(
                       vertical: 20,
-                      horizontal: 10,
+                      horizontal: Responsive.isMobile(streamContext) ? 10 : 24,
                     ),
                     crossAxisSpacing: 10,
                     crossAxisCount: crossAxisCount,
