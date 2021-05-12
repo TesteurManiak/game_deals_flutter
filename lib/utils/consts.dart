@@ -1,3 +1,6 @@
+import 'package:maniak_game_deals/extensions/extensions.dart'
+    show StringModifier;
+
 class Consts {
   static const dealsEndpoint = "https://www.cheapshark.com/api/1.0/deals";
   static const storesEndpoint = "https://www.cheapshark.com/api/1.0/stores";
@@ -16,7 +19,7 @@ class Consts {
     '8': 'https://www.origin.com/',
     '9': 'https://www.getgamesgo.com/',
     '10': 'https://shinyloot.com/',
-    '11': 'https://www.humblebundle.com/store',
+    '11': 'https://www.humblebundle.com/store/{game_title}',
     '12': 'https://www.desura.com/',
     '13': 'https://store.ubi.com/',
     '14': 'http://indiegamestand.com/',
@@ -37,8 +40,12 @@ class Consts {
     '32': 'https://www.allyouplay.com/',
   };
 
-  static String? storeUrl(String storeId, String? steamAppID) =>
+  static String? storeUrl(
+          String storeId, String gameTitle, String? steamAppID) =>
       steamAppID != null
-          ? _storeUrls[storeId]?.replaceFirst('{steam_id}', steamAppID)
-          : _storeUrls[storeId];
+          ? _storeUrls[storeId]
+              ?.replaceFirst('{steam_id}', steamAppID)
+              .replaceFirst('{game_title}', gameTitle.storeFormat())
+          : _storeUrls[storeId]
+              ?.replaceFirst('{game_title}', gameTitle.storeFormat());
 }

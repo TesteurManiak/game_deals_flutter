@@ -11,8 +11,16 @@ class SeeAllPage extends StatefulWidget {
   final Stream<List<DealModel>?> stream;
   final String title;
   final Function(int) getMoreDeals;
+  final int scrollOffset;
+  final Axis scrollDirection;
 
-  SeeAllPage(this.stream, this.title, this.getMoreDeals);
+  SeeAllPage(
+    this.stream,
+    this.title,
+    this.getMoreDeals, {
+    this.scrollOffset = 100,
+    this.scrollDirection = Axis.vertical,
+  });
 
   @override
   State<StatefulWidget> createState() => _SeeAllPageState();
@@ -43,10 +51,29 @@ class _SeeAllPageState extends State<SeeAllPage> {
   }
 
   bool _handleScrollNotification(ScrollNotification notification) {
-    if (notification is ScrollEndNotification &&
-        _scrollController.position.extentAfter == 0) {
-      _loadMore();
+    if (widget.scrollDirection == notification.metrics.axis) {
+      if (notification is ScrollUpdateNotification) {
+        if (notification.metrics.maxScrollExtent >
+                notification.metrics.pixels &&
+            notification.metrics.maxScrollExtent -
+                    notification.metrics.pixels <=
+                widget.scrollOffset) {
+          _loadMore();
+        }
+        return true;
+      }
+
+      if (notification is OverscrollNotification) {
+        if (notification.overscroll > 0) {
+          _loadMore();
+        }
+        return true;
+      }
     }
+    // if (notification is ScrollEndNotification &&
+    //     _scrollController.position.extentAfter == 0) {
+    //   _loadMore();
+    // }
     return false;
   }
 
@@ -85,6 +112,7 @@ class _SeeAllPageState extends State<SeeAllPage> {
                 return NotificationListener<ScrollNotification>(
                   onNotification: _handleScrollNotification,
                   child: StaggeredGridView.countBuilder(
+                    scrollDirection: widget.scrollDirection,
                     physics: AlwaysScrollableScrollPhysics(),
                     controller: _scrollController,
                     padding: EdgeInsets.symmetric(
