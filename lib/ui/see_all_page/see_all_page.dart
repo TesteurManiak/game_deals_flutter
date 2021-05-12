@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/deal_card.dart';
 
@@ -17,6 +18,8 @@ class SeeAllPage extends StatefulWidget {
 class _SeeAllPageState extends State<SeeAllPage> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final crossAxisCount = (size.width / 100).floor();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -27,15 +30,15 @@ class _SeeAllPageState extends State<SeeAllPage> {
           if (!snapshot.hasData || snapshot.data == null)
             return const CircularProgressIndicator();
           else if (snapshot.data!.isEmpty) return const Text('No deals');
-          return GridView.builder(
+          return StaggeredGridView.count(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 0.8,
+            crossAxisSpacing: 10,
+            crossAxisCount: crossAxisCount,
+            children: snapshot.data!.map<Widget>((e) => DealCard(e)).toList(),
+            staggeredTiles: List<StaggeredTile>.generate(
+              snapshot.data!.length,
+              (_) => StaggeredTile.fit(1),
             ),
-            itemCount: snapshot.data!.length,
-            itemBuilder: (BuildContext context, int index) =>
-                Center(child: DealCard(snapshot.data![index])),
           );
         },
       ),
