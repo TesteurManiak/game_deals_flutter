@@ -50,7 +50,7 @@ class Consts {
           host: 'www.gamersgate.com',
           path: 'games',
           queryParameters: {
-            'query': gameTitle.removeNonAlphNum(replaceBy: ' ')
+            'query': gameTitle.singleSpace().removeNonAlphNum(replaceBy: ' ')
           },
         ).toString();
       case '3':
