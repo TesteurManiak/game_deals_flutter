@@ -1,27 +1,30 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Deploy Flutter web app to github pages
-
-# Controls when the action will run. 
+name: Flutter Web
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
+    branches:
+      - master
 jobs:
   build:
+    name: Build Web
+    env:
+      my_secret: ${{secrets.commit_secret}}
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Deploy Flutter web app to github pages
-        uses: erickzanardo/flutter-gh-pages@v2
+      - uses: subosito/flutter-action@v1
         with:
-          webRenderer: canvaskit
+          channel: 'stable'
+      - run: flutter config --enable-web
+      - run: flutter pub get
+      - run: flutter build web --release
+      - run: |
+          cd build/web
+          git init 
+          git config --global user.email rouxguillaume8@gmail.com 
+          git config --global user.name "Guillaume Roux" 
+          # change this remote url for examle your remote url is https://github.com/onatcipli/flutter_web.git then the following:
+          git remote add origin https://${{secrets.commit_secret}}@github.com/TesteurManiak/game_deals_flutter.git
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "update"
+          git push origin gh-pages -f
