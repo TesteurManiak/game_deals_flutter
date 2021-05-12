@@ -4,7 +4,6 @@
 [![Issues](https://img.shields.io/github/issues/TesteurManiak/game_deals_flutter)](https://github.com/TesteurManiak/game_deals_flutter/issues)
 [![Forks](https://img.shields.io/github/forks/TesteurManiak/game_deals_flutter)](https://github.com/TesteurManiak/game_deals_flutter/network/members)
 [![Stars](https://img.shields.io/github/stars/TesteurManiak/game_deals_flutter)](https://github.com/TesteurManiak/game_deals_flutter/stargazers)
-[![License](https://img.shields.io/github/license/TesteurManiak/game_deals_flutter)]()
 
 A cross-platform application using [CheapShark API](https://apidocs.cheapshark.com/) to display videogames deals on different websites.
 
