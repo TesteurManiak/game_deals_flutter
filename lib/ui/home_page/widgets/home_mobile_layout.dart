@@ -42,7 +42,8 @@ class HomeMobileLayout extends StatelessWidget {
                     SeeAllPage.routeName,
                     arguments: [
                       _dealsBloc.onRecentDealsChanged,
-                      'Newest deals'
+                      'Newest deals',
+                      (int pageNum) => _dealsBloc.fetchRecentDeals(),
                     ],
                   ),
                 );
@@ -63,7 +64,8 @@ class HomeMobileLayout extends StatelessWidget {
                     SeeAllPage.routeName,
                     arguments: [
                       _dealsBloc.onCheapestDealsChanged,
-                      'Cheapest deals'
+                      'Cheapest deals',
+                      (int pageNum) => _dealsBloc.fetchCheapestDeals(pageNum),
                     ],
                   ),
                 );

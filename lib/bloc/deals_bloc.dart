@@ -51,18 +51,35 @@ class DealsBloc implements BlocBase {
   @override
   void initState() {}
 
-  Future<void> fetchBestDeals() async {
-    final fetchedDeals = await apiRepository.getDeals();
-    _bestDealsController.sink.add(fetchedDeals);
+  Future<void> fetchBestDeals([int pageNumber = 0]) async {
+    final newDeals =
+        bestDeals != null ? List<DealModel>.from(bestDeals!) : <DealModel>[];
+    final fetchedDeals = await apiRepository.getDeals(pageNumber: pageNumber);
+    newDeals.addAll(fetchedDeals);
+    _bestDealsController.sink.add(newDeals);
   }
 
-  Future<void> fetchRecentDeals() async {
-    final fetchedDeals = await apiRepository.getDeals(sortBy: DealSort.recent);
-    _newestDealsController.sink.add(fetchedDeals);
+  Future<void> fetchRecentDeals([int pageNumber = 0]) async {
+    final newDeals = recentDeals != null
+        ? List<DealModel>.from(recentDeals!)
+        : <DealModel>[];
+    final fetchedDeals = await apiRepository.getDeals(
+      sortBy: DealSort.recent,
+      pageNumber: pageNumber,
+    );
+    newDeals.addAll(fetchedDeals);
+    _newestDealsController.sink.add(newDeals);
   }
 
-  Future<void> fetchCheapestDeals() async {
-    final fetchedDeals = await apiRepository.getDeals(sortBy: DealSort.price);
-    _cheapestDealsController.sink.add(fetchedDeals);
+  Future<void> fetchCheapestDeals([int pageNumber = 0]) async {
+    final newDeals = cheapestDeals != null
+        ? List<DealModel>.from(cheapestDeals!)
+        : <DealModel>[];
+    final fetchedDeals = await apiRepository.getDeals(
+      sortBy: DealSort.price,
+      pageNumber: pageNumber,
+    );
+    newDeals.addAll(fetchedDeals);
+    _cheapestDealsController.sink.add(newDeals);
   }
 }

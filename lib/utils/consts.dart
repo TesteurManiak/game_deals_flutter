@@ -1,3 +1,6 @@
+import 'package:maniak_game_deals/extensions/extensions.dart'
+    show StringModifier;
+
 class Consts {
   static const dealsEndpoint = "https://www.cheapshark.com/api/1.0/deals";
   static const storesEndpoint = "https://www.cheapshark.com/api/1.0/stores";
@@ -7,19 +10,17 @@ class Consts {
 
   static const _storeUrls = <String, String>{
     '1': 'https://store.steampowered.com/app/{steam_id}/',
-    '2': 'https://www.gamersgate.com/',
-    '3': 'https://www.greenmangaming.com/',
+    '3': 'https://www.greenmangaming.com/games/{game_title}',
     '4': 'https://www.amazon.com/',
     '5': 'https://www.gamestop.com/',
     '6': 'https://www.direct2drive.com/',
-    '7': 'https://www.gog.com/',
+    '7': 'https://www.gog.com/game/{game_title}',
     '8': 'https://www.origin.com/',
     '9': 'https://www.getgamesgo.com/',
     '10': 'https://shinyloot.com/',
-    '11': 'https://www.humblebundle.com/store',
+    '11': 'https://www.humblebundle.com/store/{game_title}',
     '12': 'https://www.desura.com/',
     '13': 'https://store.ubi.com/',
-    '14': 'http://indiegamestand.com/',
     '15': 'https://www.fanatical.com/',
     '16': 'https://us.gamesrocket.com/',
     '17': 'https://gamesrepublic.com/',
@@ -37,8 +38,29 @@ class Consts {
     '32': 'https://www.allyouplay.com/',
   };
 
-  static String? storeUrl(String storeId, String? steamAppID) =>
-      steamAppID != null
-          ? _storeUrls[storeId]?.replaceFirst('{steam_id}', steamAppID)
-          : _storeUrls[storeId];
+  static String? storeUrl(
+      String storeId, String gameTitle, String? steamAppID) {
+    if (storeId == '1' && steamAppID != null) {
+      return _storeUrls[storeId]?.replaceFirst('{steam_id}', steamAppID);
+    }
+    switch (storeId) {
+      case '2':
+        return Uri(
+          scheme: 'https',
+          host: 'www.gamersgate.com',
+          path: 'games',
+          queryParameters: {
+            'query': gameTitle.removeNonAlphNum(replaceBy: ' ')
+          },
+        ).toString();
+      case '3':
+        return '${_storeUrls[storeId]?.replaceFirst('{game_title}', gameTitle.storeFormat())}-pc';
+      case '7':
+        return _storeUrls[storeId]?.replaceFirst(
+            '{game_title}', gameTitle.storeFormat(replaceSpaceBy: '_'));
+      default:
+        return _storeUrls[storeId]
+            ?.replaceFirst('{game_title}', gameTitle.storeFormat());
+    }
+  }
 }

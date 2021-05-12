@@ -44,7 +44,11 @@ class BuyBtn extends StatelessWidget {
                       .stores
                       ?.firstWhereNullable((e) => e.storeID == deal.storeID);
                   if (store != null) {
-                    final url = Consts.storeUrl(store.storeID, deal.steamAppID);
+                    final url = Consts.storeUrl(
+                      store.storeID,
+                      deal.title,
+                      deal.steamAppID,
+                    );
                     if (url != null && await canLaunch(url)) {
                       await launch(url);
                     }

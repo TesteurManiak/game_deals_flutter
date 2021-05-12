@@ -67,7 +67,7 @@ class CheapSharkApiProvider {
         queryParameters: queryParameters,
       );
       return (response.data as Iterable)
-          .map<DealModel>((e) => DealModel.fromJson(e))
+          .map<DealModel>((e) => DealModel.fromJson(e, pageNumber))
           .toList();
     } catch (e) {
       throw 'getDeals: $e';
