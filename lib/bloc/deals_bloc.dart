@@ -14,9 +14,9 @@ class DealsBloc implements BlocBase {
   Stream<List<DealModel>?> get onRecentDealsChanged =>
       _newestDealsController.stream;
   List<DealModel>? get recentDeals => _newestDealsController.value;
-  List<DealModel>? get top10RecentDeals {
-    if (recentDeals != null && recentDeals!.length >= 10) {
-      return recentDeals!.sublist(0, 10);
+  List<DealModel>? firstRecent(int length) {
+    if (recentDeals != null && recentDeals!.length >= length) {
+      return recentDeals!.sublist(0, length);
     } else {
       return recentDeals;
     }
@@ -27,9 +27,9 @@ class DealsBloc implements BlocBase {
   Stream<List<DealModel>?> get onCheapestDealsChanged =>
       _cheapestDealsController.stream;
   List<DealModel>? get cheapestDeals => _cheapestDealsController.value;
-  List<DealModel>? get top10CheapestDeals {
-    if (cheapestDeals != null && cheapestDeals!.length >= 10) {
-      return cheapestDeals!.sublist(0, 10);
+  List<DealModel>? firstCheapest(int length) {
+    if (cheapestDeals != null && cheapestDeals!.length >= length) {
+      return cheapestDeals!.sublist(0, length);
     } else {
       return cheapestDeals;
     }
