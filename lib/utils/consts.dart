@@ -11,7 +11,7 @@ class Consts {
   static const _storeUrls = <String, String>{
     '1': 'https://store.steampowered.com/app/{steam_id}/',
     '2': 'https://www.gamersgate.com/',
-    '3': 'https://www.greenmangaming.com/',
+    '3': 'https://www.greenmangaming.com/games/{game_title}',
     '4': 'https://www.amazon.com/',
     '5': 'https://www.gamestop.com/',
     '6': 'https://www.direct2drive.com/',
@@ -46,6 +46,8 @@ class Consts {
       return _storeUrls[storeId]?.replaceFirst('{steam_id}', steamAppID);
     }
     switch (storeId) {
+      case '3':
+        return '${_storeUrls[storeId]?.replaceFirst('{game_title}', gameTitle.storeFormat())}-pc';
       case '7':
         return _storeUrls[storeId]?.replaceFirst(
             '{game_title}', gameTitle.storeFormat(replaceSpaceBy: '_'));
