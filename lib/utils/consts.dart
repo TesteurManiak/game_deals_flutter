@@ -21,7 +21,6 @@ class Consts {
     '11': 'https://www.humblebundle.com/store/{game_title}',
     '12': 'https://www.desura.com/',
     '13': 'https://store.ubi.com/',
-    '14': 'http://indiegamestand.com/',
     '15': 'https://www.fanatical.com/',
     '16': 'https://us.gamesrocket.com/',
     '17': 'https://gamesrepublic.com/',
