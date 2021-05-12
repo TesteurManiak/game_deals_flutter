@@ -44,6 +44,7 @@ class DealModel {
   final DateTime? lastChange;
   final double? dealRating;
   final String thumb;
+  final int pageNumber;
 
   late int _id;
 
@@ -70,6 +71,7 @@ class DealModel {
     required this.lastChange,
     required this.dealRating,
     required this.thumb,
+    required this.pageNumber,
   }) {
     final random = Random();
     _id = random.nextInt(1000000);
@@ -78,7 +80,7 @@ class DealModel {
     }
   }
 
-  factory DealModel.fromJson(json) => DealModel(
+  factory DealModel.fromJson(json, int pageNumber) => DealModel(
         internalName: json[internalNameEntry],
         title: json[titleEntry],
         metacriticLink: json[metacriticLinkEntry],
@@ -102,5 +104,6 @@ class DealModel {
             : null,
         dealRating: double.tryParse(json[dealRatingEntry]) ?? null,
         thumb: json[thumbEntry],
+        pageNumber: pageNumber,
       );
 }

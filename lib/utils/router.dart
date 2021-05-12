@@ -14,7 +14,8 @@ class MyRouter {
         return MaterialPageRoute(builder: (_) => HomePage());
       case SeeAllPage.routeName:
         final args = settings.arguments as List;
-        return MaterialPageRoute(builder: (_) => SeeAllPage(args[0], args[1]));
+        return MaterialPageRoute(
+            builder: (_) => SeeAllPage(args[0], args[1], args[2]));
       case DealPage.routeName:
         return MaterialPageRoute(
             builder: (_) => DealPage(settings.arguments as DealModel));
