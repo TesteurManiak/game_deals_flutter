@@ -22,4 +22,5 @@ class MyColors {
   static const buyBtnShadow = Color(0xFFF64C32);
   static const progressIndicator = Color(0xFFFA5F35);
   static const dealPagePrice = Color(0xFFFA5F35);
+  static const appLogo = Color(0xFFFA5F35);
 }

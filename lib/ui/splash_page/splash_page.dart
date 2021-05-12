@@ -3,6 +3,7 @@ import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
+import 'package:maniak_game_deals/ui/common/app_logo.dart';
 import 'package:maniak_game_deals/ui/home_page/home_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -47,30 +48,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
-                  child: Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 50,
-                          child: Icon(
-                            Icons.gamepad,
-                            size: 50,
-                            color: MyColors.progressIndicator,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'Game Store',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: const AppLogo(),
                   flex: 2,
                 ),
                 Expanded(
