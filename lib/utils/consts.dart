@@ -15,7 +15,7 @@ class Consts {
     '4': 'https://www.amazon.com/',
     '5': 'https://www.gamestop.com/',
     '6': 'https://www.direct2drive.com/',
-    '7': 'https://www.gog.com/',
+    '7': 'https://www.gog.com/game/{game_title}',
     '8': 'https://www.origin.com/',
     '9': 'https://www.getgamesgo.com/',
     '10': 'https://shinyloot.com/',
@@ -41,11 +41,17 @@ class Consts {
   };
 
   static String? storeUrl(
-          String storeId, String gameTitle, String? steamAppID) =>
-      steamAppID != null
-          ? _storeUrls[storeId]
-              ?.replaceFirst('{steam_id}', steamAppID)
-              .replaceFirst('{game_title}', gameTitle.storeFormat())
-          : _storeUrls[storeId]
-              ?.replaceFirst('{game_title}', gameTitle.storeFormat());
+      String storeId, String gameTitle, String? steamAppID) {
+    if (steamAppID != null) {
+      return _storeUrls[storeId]?.replaceFirst('{steam_id}', steamAppID);
+    }
+    switch (storeId) {
+      case '7':
+        return _storeUrls[storeId]?.replaceFirst(
+            '{game_title}', gameTitle.storeFormat(replaceSpaceBy: '_'));
+      default:
+        return _storeUrls[storeId]
+            ?.replaceFirst('{game_title}', gameTitle.storeFormat());
+    }
+  }
 }

@@ -4,9 +4,9 @@ extension StringModifier on String {
     return val != null && val > 0 ? true : false;
   }
 
-  String storeFormat() => this
-      .replaceAll(' ', '-')
+  String storeFormat({String replaceSpaceBy = '-'}) => this
       .replaceAll(RegExp("[^a-zA-Z0-9 -]"), '')
+      .replaceAll(' ', replaceSpaceBy)
       .toLowerCase()
       .trim();
 }
