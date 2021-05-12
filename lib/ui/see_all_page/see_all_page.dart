@@ -70,10 +70,6 @@ class _SeeAllPageState extends State<SeeAllPage> {
         return true;
       }
     }
-    // if (notification is ScrollEndNotification &&
-    //     _scrollController.position.extentAfter == 0) {
-    //   _loadMore();
-    // }
     return false;
   }
 
@@ -94,7 +90,7 @@ class _SeeAllPageState extends State<SeeAllPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final crossAxisCount = (size.width / 100).floor();
+    int crossAxisCount = (size.width / 100).floor();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -124,7 +120,7 @@ class _SeeAllPageState extends State<SeeAllPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, int index) =>
                         DealCard(snapshot.data![index]),
-                    staggeredTileBuilder: (_) => StaggeredTile.fit(1),
+                    staggeredTileBuilder: (_) => StaggeredTile.count(1, 2.2),
                   ),
                 );
               },
