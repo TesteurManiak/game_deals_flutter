@@ -50,7 +50,7 @@ class Consts {
           host: 'www.gamersgate.com',
           path: 'games',
           queryParameters: {
-            'query': gameTitle.removeNonAlphNum(replaceBy: ' ')
+            'query': gameTitle.singleSpace().removeNonAlphNum(replaceBy: ' ')
           },
         ).toString();
       case '3':
@@ -58,6 +58,15 @@ class Consts {
       case '7':
         return _storeUrls[storeId]?.replaceFirst(
             '{game_title}', gameTitle.storeFormat(replaceSpaceBy: '_'));
+      case '27':
+        return Uri(
+          scheme: 'https',
+          host: 'us.gamesplanet.com',
+          path: 'search',
+          queryParameters: {
+            'query': gameTitle.singleSpace().removeNonAlphNum(replaceBy: ' '),
+          },
+        ).toString();
       default:
         return _storeUrls[storeId]
             ?.replaceFirst('{game_title}', gameTitle.storeFormat());
