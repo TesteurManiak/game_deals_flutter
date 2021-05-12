@@ -15,22 +15,21 @@ You can try the web version hosted on [Github Pages](https://testeurmaniak.githu
 
 ### Android
 
-_Coming soon_
+_Coming soon on Google PlayStore. You can still build the source yourself if you want to try it._
 
 ### iOS
 
 No release planned. You will need to build the iPA yourself.
 
-## Screenshots
-
-![Home](screenshots/home.png)
-![New](screenshots/new.png)
-
 ## TODO
+
+* [x] [Web Release](https://testeurmaniak.github.io/game_deals_flutter/)
+* [ ] Android Release
 
 ### Design
 
 * [ ] Application icon and favicon
+* [ ] Web Spinner
 * [ ] Add some more animations
 * [ ] Dark theme
 
@@ -49,12 +48,35 @@ No release planned. You will need to build the iPA yourself.
 * [x] ![humble bundle store](assets/img/stores/icons/10.png) Humble Bundle Store
 * [ ] ![desura](assets/img/stores/icons/11.png) Desura
 * [ ] ![uplay](assets/img/stores/icons/12.png) Uplay
+* [ ] ![fanatical](assets/img/stores/icons/14.png) Fanatical
+* [ ] ![gamesrocket](assets/img/stores/icons/15.png) GamesRocket
+* [ ] ![games republic](assets/img/stores/icons/16.png) Games Republic
+* [ ] ![sila games](assets/img/stores/icons/17.png) Sila Games Store
+* [ ] ![wingamestore](assets/img/stores/icons/20.png) WinGameStore
+* [ ] ![funstock](assets/img/stores/icons/21.png) Funstock
+* [ ] ![gamebillet](assets/img/stores/icons/22.png) Gamebillet
+* [ ] ![voidu](assets/img/stores/icons/23.png) Voidu
+* [ ] ![epic games store](assets/img/stores/icons/24.png) Epic Games Store
+* [x] ![gamesplanet](assets/img/stores/icons/26.png) Gamesplanet
 
 ### Features
 
+* [x] Lazy loading
 * [ ] Search and Filters
+* [ ] Deal's Data (ex: price evolution chart)
 * [ ] Wishlist
-* [ ] Deal's Data (ex: price evolution)
+* [ ] Profile/Settings
+
+### Localization
+
+* [x] English US
+* [ ] English UK
+* [ ] French FRA
+
+## Screenshots
+
+![Home](screenshots/web/home.png)
+![New](screenshots/web/new.png)
 
 ## Credits
 
