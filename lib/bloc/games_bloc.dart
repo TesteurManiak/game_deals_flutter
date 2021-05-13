@@ -4,8 +4,8 @@ import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class GamesBloc extends BlocBase {
-  final _gamesController = BehaviorSubject<List<GameModel>>.seeded([]);
-  Stream<List<GameModel>> get onGamesChanged => _gamesController.stream;
+  final _gamesController = BehaviorSubject<List<GameModel>?>.seeded([]);
+  Stream<List<GameModel>?> get onGamesChanged => _gamesController.stream;
   List<GameModel>? get games => _gamesController.value;
 
   @override
@@ -17,6 +17,7 @@ class GamesBloc extends BlocBase {
   }
 
   Future<void> fetchGames(String title) async {
+    _gamesController.sink.add(null);
     final fetchedGames = await apiRepository.getGames(title);
     _gamesController.sink.add(fetchedGames);
   }

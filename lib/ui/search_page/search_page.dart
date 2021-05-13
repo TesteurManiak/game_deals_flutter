@@ -5,6 +5,7 @@ import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
 import 'package:maniak_game_deals/ui/game_page/game_page.dart';
+import 'package:maniak_game_deals/ui/search_page/widgets/game_tile.dart';
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search';
@@ -34,38 +35,34 @@ class _SearchPageState extends State<SearchPage> {
           decoration: InputDecoration(hintText: 'Search'),
           onSubmitted: (value) => _gamesBloc.fetchGames(value),
         ),
+        actions: [
+          StreamBuilder<List<GameModel>?>(
+            stream: _gamesBloc.onGamesChanged,
+            builder: (_, snapshot) => IconButton(
+              icon: const Icon(Icons.sort),
+              onPressed: snapshot.data != null && snapshot.data!.isNotEmpty
+                  ? () => print('Filter results')
+                  : null,
+            ),
+          )
+        ],
       ),
-      body: StreamBuilder<List<GameModel>>(
+      body: StreamBuilder<List<GameModel>?>(
         stream: _gamesBloc.onGamesChanged,
         builder: (streamContext, snapshot) {
-          if (!snapshot.hasData) return const CircularProgressIndicator();
-          if (snapshot.data!.isEmpty) return const Text('No game to display');
+          if (!snapshot.hasData || snapshot.data == null) {
+            return Center(child: const CircularProgressIndicator());
+          }
+          if (snapshot.data!.isEmpty) {
+            return Center(child: const Text('No game to display'));
+          }
           return ListView.separated(
             padding: EdgeInsets.symmetric(
               vertical: 20,
               horizontal: Responsive.isMobile(streamContext) ? 10 : 24,
             ),
             itemCount: snapshot.data!.length,
-            itemBuilder: (_, index) => ListTile(
-              leading: DealIcon(
-                snapshot.data![index].thumb,
-                height: 50,
-                width: 50,
-                radius: 10,
-              ),
-              title: Text(snapshot.data![index].gameExternal),
-              trailing: Text(
-                '\$${snapshot.data![index].cheapest.toStringAsFixed(2)}',
-              ),
-              onTap: () => Navigator.pushNamed(
-                context,
-                GamePage.routeName,
-                arguments: [
-                  snapshot.data![index].gameExternal,
-                  snapshot.data![index].gameID,
-                ],
-              ),
-            ),
+            itemBuilder: (_, index) => GameTile(snapshot.data![index]),
             separatorBuilder: (_, __) => const SizedBox(height: 8),
           );
         },
