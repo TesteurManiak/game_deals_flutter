@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:maniak_game_deals/models/deal_look_up_model.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/models/game_look_up_model.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
@@ -126,6 +127,18 @@ class CheapSharkApiProvider {
       return GameLookUpModel.fromJson(response.data);
     } catch (e) {
       throw 'getGameLookup: $e';
+    }
+  }
+
+  Future<DealLookUpModel> getDealLookUp(String dealID) async {
+    try {
+      final response = await _dio.get(
+        Endpoints.deals,
+        queryParameters: {},
+      );
+      return DealLookUpModel.fromJson(response.data);
+    } catch (e) {
+      throw 'getDealLookUp: $e';
     }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/game_look_up_model.dart';
+import 'package:maniak_game_deals/ui/game_page/widgets/available_deal_tile.dart';
 
 class GamePage extends StatefulWidget {
   static const routeName = '/game';
@@ -37,7 +38,22 @@ class _GamePageState extends State<GamePage> {
           if (!snapshot.hasData || snapshot.data == null) {
             return Center(child: const CircularProgressIndicator());
           }
-          return Container();
+          return Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Available Deals'),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.deals.length,
+                    itemBuilder: (_, index) =>
+                        AvailableDealTile(snapshot.data!.deals[index]),
+                  ),
+                )
+              ],
+            ),
+          );
         },
       ),
     );

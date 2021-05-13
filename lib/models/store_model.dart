@@ -7,10 +7,6 @@ class _StoreImages {
   final String? logo;
   final String? icon;
 
-  String? get bannerUrl => banner != null ? 'assets$banner' : null;
-
-  String? get logoUrl => logo != null ? 'assets$logo' : null;
-
   String? get iconUrl => icon != null ? 'assets$icon' : null;
 
   _StoreImages({required this.banner, required this.logo, required this.icon});

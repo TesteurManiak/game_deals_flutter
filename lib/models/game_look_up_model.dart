@@ -29,7 +29,7 @@ class _CheapestPriceEver {
       );
 }
 
-class _Deal {
+class AvailableDeal {
   final String storeID;
   final String dealID;
   final double price;
@@ -38,7 +38,7 @@ class _Deal {
 
   final StoreEnum? storeEnum;
 
-  _Deal({
+  AvailableDeal({
     required this.storeID,
     required this.dealID,
     required this.price,
@@ -46,7 +46,7 @@ class _Deal {
     required this.savings,
   }) : storeEnum = storeID.toStoreEnum();
 
-  factory _Deal.fromJson(Map<String, dynamic> json) => _Deal(
+  factory AvailableDeal.fromJson(Map<String, dynamic> json) => AvailableDeal(
         storeID: json['storeID'],
         dealID: json['dealID'],
         price: double.parse(json['price']),
@@ -58,7 +58,7 @@ class _Deal {
 class GameLookUpModel {
   final _Info info;
   final _CheapestPriceEver cheapestPriceEver;
-  final List<_Deal> deals;
+  final List<AvailableDeal> deals;
 
   GameLookUpModel({
     required this.info,
@@ -72,7 +72,7 @@ class GameLookUpModel {
         cheapestPriceEver:
             _CheapestPriceEver.fromJson(json['cheapestPriceEver']),
         deals: (json['deals'] as Iterable)
-            .map<_Deal>((e) => _Deal.fromJson(e))
+            .map<AvailableDeal>((e) => AvailableDeal.fromJson(e))
             .toList(),
       );
 }
