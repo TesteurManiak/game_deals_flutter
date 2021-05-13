@@ -52,6 +52,8 @@ class Endpoints {
         return StoreUri.humbleBundle(gameTitle);
       case StoreEnum.win_game:
         return StoreUri.winGame(gameTitle);
+      case StoreEnum.indie_gala:
+        return StoreUri.indieGala(gameTitle);
       default:
         return _storeUrls[storeId];
     }

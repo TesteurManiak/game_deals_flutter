@@ -58,6 +58,11 @@ No release planned. You will need to build the iPA yourself.
 * [ ] ![voidu](assets/img/stores/icons/23.png) Voidu
 * [ ] ![epic games store](assets/img/stores/icons/24.png) Epic Games Store
 * [x] ![gamesplanet](assets/img/stores/icons/26.png) Gamesplanet
+* [ ] ![gamesload](assets/img/stores/icons/27.png) Gamesload
+* [ ] ![2games](assets/img/stores/icons/28.png) 2Games
+* [x] ![indie gala](assets/img/stores/icons/29.png) Indie Gala
+* [ ] ![battle.net](assets/img/stores/icons/30.png) Battle.Net
+* [ ] ![all you play](assets/img/stores/icons/21.png) All You Play
 
 ### Features
 
@@ -69,9 +74,8 @@ No release planned. You will need to build the iPA yourself.
 
 ### Localization
 
-* [x] English US
-* [ ] English UK
-* [ ] French FRA
+* [x] English
+* [ ] French
 
 ## Screenshots
 

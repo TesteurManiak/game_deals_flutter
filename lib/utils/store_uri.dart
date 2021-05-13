@@ -13,7 +13,7 @@ class StoreUri {
         host: 'www.gamersgate.com',
         path: 'games',
         queryParameters: {
-          'query': gameTitle.singleSpace().removeNonAlphNum(replaceBy: ' ')
+          'query': gameTitle.removeNonAlphNum(replaceBy: ' ').singleSpace()
         },
       ).toString();
 
@@ -28,7 +28,7 @@ class StoreUri {
         path: 'search',
         queryParameters: {
           'searchString':
-              gameTitle.singleSpace().removeNonAlphNum(replaceBy: ' ')
+              gameTitle.removeNonAlphNum(replaceBy: ' ').singleSpace()
         },
       ).toString();
 
@@ -43,7 +43,7 @@ class StoreUri {
         host: 'us.gamesplanet.com',
         path: 'search',
         queryParameters: {
-          'query': gameTitle.singleSpace().removeNonAlphNum(replaceBy: ' '),
+          'query': gameTitle.removeNonAlphNum(replaceBy: ' ').singleSpace(),
         },
       ).toString();
 
@@ -60,8 +60,14 @@ class StoreUri {
         queryParameters: {
           'SearchWord': gameTitle
               .toLowerCase()
-              .singleSpace()
-              .removeNonAlphNum(replaceBy: ' '),
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace(),
         },
       ).toString();
+
+  static String indieGala(String gameTitle) =>
+      Uri(scheme: 'https', host: 'www.indiegala.com', pathSegments: [
+        'search',
+        gameTitle.toLowerCase().removeNonAlphNum(replaceBy: ' ').singleSpace(),
+      ]).toString();
 }
