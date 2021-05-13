@@ -6,6 +6,7 @@ class Endpoints {
   static const storesEndpoint = "https://www.cheapshark.com/api/1.0/stores";
   static const lookUpEndpoint =
       "https://www.cheapshark.com/api/1.0/deals?id={deal_id}";
+  static const gamesEndpoint = 'https://www.cheapshark.com/api/1.0/games';
   static final registeredHeroId = Set<String>();
 
   static const _storeUrls = <StoreEnum, String>{

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maniak_game_deals/helper/navigator_helper.dart';
 import 'package:maniak_game_deals/ui/common/app_logo.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/home_content.dart';
 
@@ -17,9 +18,7 @@ class HomeMobileLayout extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              print('Navigate to search page');
-            },
+            onPressed: () => NavigatorHelper.goToSearchPage(context),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:maniak_game_deals/models/store_model.dart';
 import 'package:maniak_game_deals/utils/consts.dart';
@@ -92,6 +93,32 @@ class CheapSharkApiProvider {
       return response.data;
     } catch (e) {
       throw 'getDealLookup: $e';
+    }
+  }
+
+  Future<List<GameModel>> getListOfGames(
+    String title, {
+    String? steamAppID,
+    int limit = 60,
+    bool exact = false,
+  }) async {
+    assert(limit >= 60 && limit > 0);
+    try {
+      final queryParameters = <String, dynamic>{
+        'title': title,
+        'limit': limit,
+        'exact': exact.toInt(),
+      };
+      if (steamAppID != null) queryParameters['steamAppID'] = steamAppID;
+      final response = await _dio.get(
+        Endpoints.gamesEndpoint,
+        queryParameters: queryParameters,
+      );
+      return (response.data as Iterable)
+          .map<GameModel>((e) => GameModel.fromJson(e))
+          .toList();
+    } catch (e) {
+      throw 'getListOfGames: $e';
     }
   }
 }

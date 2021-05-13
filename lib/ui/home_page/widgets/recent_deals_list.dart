@@ -16,13 +16,7 @@ class RecentDealsList extends StatefulWidget {
 }
 
 class _RecentDealsListState extends State<RecentDealsList> {
-  late final DealsBloc _dealsBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _dealsBloc = BlocProvider.of<DealsBloc>(context);
-  }
+  late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
 
   @override
   Widget build(BuildContext context) {

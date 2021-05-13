@@ -14,8 +14,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-  late final DealsBloc _dealsBloc;
-  late final StoresBloc _storesBloc;
+  late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
+  late final StoresBloc _storesBloc = BlocProvider.of<StoresBloc>(context);
 
   Future<void> _loadAllData() async {
     await Future.wait([
@@ -29,9 +29,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _dealsBloc = BlocProvider.of<DealsBloc>(context);
-    _storesBloc = BlocProvider.of<StoresBloc>(context);
-
     _loadAllData().then(
         (_) => Navigator.pushReplacementNamed(context, HomePage.routeName));
   }

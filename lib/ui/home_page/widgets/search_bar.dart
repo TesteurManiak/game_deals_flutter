@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maniak_game_deals/helper/navigator_helper.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
 
@@ -9,9 +10,7 @@ class SearchBar extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {
-          print('Navigate to search page');
-        },
+        onTap: () => NavigatorHelper.goToSearchPage(context),
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: hPadding),
           padding: const EdgeInsets.all(8),

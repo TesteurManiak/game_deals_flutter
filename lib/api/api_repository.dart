@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:maniak_game_deals/api/cheap_shark_api.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:maniak_game_deals/models/store_model.dart';
 
@@ -51,6 +52,9 @@ class ApiRepository {
       );
 
   Future<List<StoreModel>> getStores() => _cheapSharkApiProvider.getStores();
+
+  Future<List<GameModel>> getGames(String title) =>
+      _cheapSharkApiProvider.getListOfGames(title);
 }
 
 final apiRepository = ApiRepository();
