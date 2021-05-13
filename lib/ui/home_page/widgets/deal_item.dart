@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
+import 'package:maniak_game_deals/models/deal_display_model.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
@@ -26,7 +27,7 @@ class DealItem extends StatelessWidget {
           onTap: () => Navigator.pushNamed(
             context,
             DealPage.routeName,
-            arguments: deal,
+            arguments: DealDisplayModel.fromDealModel(deal),
           ),
           child: Container(
             width: width,

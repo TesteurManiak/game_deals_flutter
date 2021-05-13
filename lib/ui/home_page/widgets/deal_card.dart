@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
+import 'package:maniak_game_deals/models/deal_display_model.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
@@ -18,8 +19,11 @@ class DealCard extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         borderRadius: BorderRadius.circular(10),
-        onTap: () =>
-            Navigator.pushNamed(context, DealPage.routeName, arguments: deal),
+        onTap: () => Navigator.pushNamed(
+          context,
+          DealPage.routeName,
+          arguments: DealDisplayModel.fromDealModel(deal),
+        ),
         child: Container(
           width: width,
           child: Column(

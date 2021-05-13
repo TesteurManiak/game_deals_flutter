@@ -132,10 +132,14 @@ class CheapSharkApiProvider {
 
   Future<DealLookUpModel> getDealLookUp(String dealID) async {
     try {
-      final response = await _dio.get(
-        Endpoints.deals,
-        queryParameters: {},
+      final uri = Uri(
+        scheme: 'https',
+        host: 'www.cheapshark.com',
+        pathSegments: ['api', '1.0', 'deals'],
+        query: 'id=$dealID',
       );
+      final response = await _dio.getUri(uri);
+      print(response.data);
       return DealLookUpModel.fromJson(response.data);
     } catch (e) {
       throw 'getDealLookUp: $e';

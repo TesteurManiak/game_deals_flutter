@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
-import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/my_gradients.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
@@ -12,9 +11,17 @@ import 'package:maniak_game_deals/extensions/extensions.dart'
     show IterableModifier;
 
 class BuyBtn extends StatelessWidget {
-  final DealModel deal;
+  final double salePrice;
+  final String storeID;
+  final String title;
+  final String? steamAppID;
 
-  BuyBtn(this.deal);
+  BuyBtn({
+    required this.salePrice,
+    required this.storeID,
+    required this.title,
+    required this.steamAppID,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +39,7 @@ class BuyBtn extends StatelessWidget {
             children: [
               const SizedBox(width: 28),
               Text(
-                '\$${deal.salePrice.toStringAsFixed(2)}',
+                '\$${salePrice.toStringAsFixed(2)}',
                 style: TextStyles.dealPagePrice,
               ),
               const SizedBox(width: 28),
@@ -42,12 +49,12 @@ class BuyBtn extends StatelessWidget {
                 onPressed: () async {
                   final store = BlocProvider.of<StoresBloc>(context)
                       .stores
-                      ?.firstWhereNullable((e) => e.storeID == deal.storeID);
+                      ?.firstWhereNullable((e) => e.storeID == storeID);
                   if (store != null) {
                     final url = Endpoints.storeUrl(
                       store.storeEnum,
-                      deal.title,
-                      deal.steamAppID,
+                      title,
+                      steamAppID,
                     );
                     print(url);
                     if (url != null && await canLaunch(url)) {

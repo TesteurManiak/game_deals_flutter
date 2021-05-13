@@ -1,4 +1,4 @@
-class _DealLookUpInfo {
+class _GameInfo {
   final String storeID;
   final String gameID;
   final String name;
@@ -15,7 +15,7 @@ class _DealLookUpInfo {
   final String? steamworks;
   final String thumb;
 
-  _DealLookUpInfo({
+  _GameInfo({
     required this.storeID,
     required this.gameID,
     required this.name,
@@ -33,8 +33,7 @@ class _DealLookUpInfo {
     required this.thumb,
   });
 
-  factory _DealLookUpInfo.fromJson(Map<String, dynamic> json) =>
-      _DealLookUpInfo(
+  factory _GameInfo.fromJson(Map<String, dynamic> json) => _GameInfo(
         storeID: json['storeID'],
         gameID: json['gameID'],
         name: json['name'],
@@ -77,31 +76,31 @@ class CheaperStore {
 }
 
 class _CheapestPrice {
-  final double price;
+  final double? price;
   final DateTime date;
 
   _CheapestPrice({required this.price, required this.date});
 
   factory _CheapestPrice.fromJson(Map<String, dynamic> json) => _CheapestPrice(
-        price: double.parse(json['price']),
+        price: json['price'] != null ? double.parse(json['price']) : null,
         date: DateTime.fromMillisecondsSinceEpoch(json['date'] * 1000),
       );
 }
 
 class DealLookUpModel {
-  final _DealLookUpInfo info;
+  final _GameInfo gameInfo;
   final List<CheaperStore> cheaperStores;
   final _CheapestPrice cheapestPrice;
 
   DealLookUpModel({
-    required this.info,
+    required this.gameInfo,
     required this.cheaperStores,
     required this.cheapestPrice,
   });
 
   factory DealLookUpModel.fromJson(Map<String, dynamic> json) =>
       DealLookUpModel(
-        info: _DealLookUpInfo.fromJson(json['gameInfo']),
+        gameInfo: _GameInfo.fromJson(json['gameInfo']),
         cheaperStores: (json['cheaperStores'] as Iterable)
             .map<CheaperStore>((e) => CheaperStore.fromJson(e))
             .toList(),
