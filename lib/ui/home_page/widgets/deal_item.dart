@@ -64,28 +64,7 @@ class DealItem extends StatelessWidget {
                         bottom: Radius.circular(8),
                       ),
                     ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            deal.title,
-                            style: TextStyles.dealOverlay,
-                          ),
-                        ),
-                        Image.asset(
-                          BlocProvider.of<StoresBloc>(context)
-                              .stores!
-                              .firstWhere((e) => e.storeID == deal.storeID)
-                              .images!
-                              .iconUrl!,
-                          errorBuilder: (_, __, ___) => const Icon(
-                            Icons.error,
-                            color: Colors.white,
-                            size: 16,
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: Text(deal.title, style: TextStyles.dealOverlay),
                   ),
                 ),
                 Positioned(
@@ -101,6 +80,22 @@ class DealItem extends StatelessWidget {
                     child: Text(
                       '-${deal.percentageOff}',
                       style: TextStyles.dealOverlay,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: Image.asset(
+                    BlocProvider.of<StoresBloc>(context)
+                        .stores!
+                        .firstWhere((e) => e.storeID == deal.storeID)
+                        .images!
+                        .iconUrl!,
+                    errorBuilder: (_, __, ___) => const Icon(
+                      Icons.error,
+                      color: Colors.white,
+                      size: 16,
                     ),
                   ),
                 ),
