@@ -56,7 +56,7 @@ No release planned. You will need to build the iPA yourself.
 * [ ] ![funstock](assets/img/stores/icons/21.png) Funstock
 * [ ] ![gamebillet](assets/img/stores/icons/22.png) Gamebillet
 * [ ] ![voidu](assets/img/stores/icons/23.png) Voidu
-* [ ] ![epic games store](assets/img/stores/icons/24.png) Epic Games Store
+* [x] ![epic games store](assets/img/stores/icons/24.png) Epic Games Store
 * [x] ![gamesplanet](assets/img/stores/icons/26.png) Gamesplanet
 * [ ] ![gamesload](assets/img/stores/icons/27.png) Gamesload
 * [ ] ![2games](assets/img/stores/icons/28.png) 2Games

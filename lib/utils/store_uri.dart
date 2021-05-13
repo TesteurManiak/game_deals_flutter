@@ -65,9 +65,27 @@ class StoreUri {
         },
       ).toString();
 
-  static String indieGala(String gameTitle) =>
-      Uri(scheme: 'https', host: 'www.indiegala.com', pathSegments: [
-        'search',
-        gameTitle.toLowerCase().removeNonAlphNum(replaceBy: ' ').singleSpace(),
-      ]).toString();
+  static String indieGala(String gameTitle) => Uri(
+        scheme: 'https',
+        host: 'www.indiegala.com',
+        pathSegments: [
+          'search',
+          gameTitle
+              .toLowerCase()
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace(),
+        ],
+      ).toString();
+
+  static String epicGames(String gameTitle) => Uri(
+        scheme: 'https',
+        host: 'www.epicgames.com',
+        pathSegments: ['store', 'browse'],
+        queryParameters: {
+          'q': gameTitle
+              .toLowerCase()
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace(),
+        },
+      ).toString();
 }

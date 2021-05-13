@@ -49,7 +49,6 @@ class BuyBtn extends StatelessWidget {
                       deal.title,
                       deal.steamAppID,
                     );
-                    print('${store.storeID} - ${deal.title}');
                     print(url);
                     if (url != null && await canLaunch(url)) {
                       await launch(url);

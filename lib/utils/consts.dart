@@ -23,10 +23,8 @@ class Endpoints {
     StoreEnum.funstock: 'https://funstock.co.uk/',
     StoreEnum.gamebillet: 'https://www.gamebillet.com/',
     StoreEnum.voidu: 'https://www.voidu.com/',
-    StoreEnum.epic_games: 'https://www.epicgames.com/store/',
     StoreEnum.gamesload: 'https://www.gamesload.com/',
     StoreEnum.two_game: 'https://2game.com/',
-    StoreEnum.indie_gala: 'https://www.indiegala.com/',
     StoreEnum.battle_net: 'https://eu.shop.battle.net/',
     StoreEnum.all_you_play: 'https://www.allyouplay.com/',
   };
@@ -54,6 +52,8 @@ class Endpoints {
         return StoreUri.winGame(gameTitle);
       case StoreEnum.indie_gala:
         return StoreUri.indieGala(gameTitle);
+      case StoreEnum.epic_games:
+        return StoreUri.epicGames(gameTitle);
       default:
         return _storeUrls[storeId];
     }
