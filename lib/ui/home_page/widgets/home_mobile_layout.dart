@@ -14,6 +14,14 @@ class HomeMobileLayout extends StatelessWidget {
         leading: AppLogo.small(),
         title: Text('Game Store'),
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              print('Navigate to search page');
+            },
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(items: items),
       body: HomeContent(),
