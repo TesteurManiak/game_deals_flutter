@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
+import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search';
@@ -37,13 +37,15 @@ class _SearchPageState extends State<SearchPage> {
         stream: _gamesBloc.onGamesChanged,
         builder: (_, snapshot) {
           if (!snapshot.hasData) return const CircularProgressIndicator();
-          return ListView.builder(
+          if (snapshot.data!.isEmpty) return const Text('No game to display');
+          return ListView.separated(
             itemCount: snapshot.data!.length,
             itemBuilder: (_, index) => ListTile(
-              leading: CachedNetworkImage(
-                imageUrl: snapshot.data![index].thumb,
-                placeholder: (_, __) => const CircularProgressIndicator(),
-                errorWidget: (_, __, ___) => const Icon(Icons.error),
+              leading: DealIcon(
+                snapshot.data![index].thumb,
+                height: 50,
+                width: 50,
+                radius: 10,
               ),
               title: Text(snapshot.data![index].gameExternal),
               trailing: Text(
@@ -51,6 +53,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
               onTap: () {},
             ),
+            separatorBuilder: (_, __) => const SizedBox(height: 8),
           );
         },
       ),

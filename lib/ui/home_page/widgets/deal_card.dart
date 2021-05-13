@@ -25,7 +25,7 @@ class DealCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              DealIcon(deal, width: width),
+              DealIcon(deal.thumb, width: width, uid: deal.uid),
               const SizedBox(height: 10),
               Text(
                 deal.title,

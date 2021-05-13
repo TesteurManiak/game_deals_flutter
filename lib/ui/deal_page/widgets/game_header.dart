@@ -16,7 +16,7 @@ class GameHeader extends StatelessWidget {
     return Row(
       children: [
         Container(
-          child: DealIcon(deal),
+          child: DealIcon(deal.thumb, uid: deal.uid),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
