@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
-import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
-import 'package:maniak_game_deals/ui/game_page/game_page.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/game_tile.dart';
 
 class SearchPage extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/models/game_look_up_model.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:maniak_game_deals/models/store_model.dart';
@@ -118,11 +119,11 @@ class CheapSharkApiProvider {
     }
   }
 
-  Future<GameModel> getGameLookup(String gameID) async {
+  Future<GameLookUpModel> getGameLookup(String gameID) async {
     try {
       final response =
           await _dio.get(Endpoints.games, queryParameters: {'id': gameID});
-      return GameModel.fromJson(response.data);
+      return GameLookUpModel.fromJson(response.data);
     } catch (e) {
       throw 'getGameLookup: $e';
     }
