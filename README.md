@@ -61,13 +61,14 @@ No release planned. You will need to build the iPA yourself.
 * [ ] ![gamesload](assets/img/stores/icons/27.png) Gamesload
 * [ ] ![2games](assets/img/stores/icons/28.png) 2Games
 * [x] ![indie gala](assets/img/stores/icons/29.png) Indie Gala
-* [ ] ![battle.net](assets/img/stores/icons/30.png) Battle.Net
+* [x] ![battle.net](assets/img/stores/icons/30.png) Battle.Net
 * [ ] ![all you play](assets/img/stores/icons/21.png) All You Play
 
 ### Features
 
 * [x] Lazy loading
-* [ ] Search and Filters
+* [x] Search
+* [ ] Filters
 * [ ] Deal's Data (ex: price evolution chart)
 * [ ] Wishlist
 * [ ] Profile/Settings

@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
-import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 
 class GameHeader extends StatelessWidget {
-  final DealModel deal;
+  final String thumb;
+  final String? uid;
+  final String storeID;
+  final String title;
+  final double? dealRating;
 
-  GameHeader(this.deal);
+  GameHeader(
+    this.thumb,
+    this.uid,
+    this.storeID,
+    this.title,
+    this.dealRating,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Container(
-          child: DealIcon(deal),
+          child: DealIcon(thumb, uid: uid),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
@@ -33,12 +42,12 @@ class GameHeader extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(deal.title, style: TextStyles.dealTitle),
+              Text(title, style: TextStyles.dealTitle),
               const SizedBox(height: 4),
               Image.asset(
                 BlocProvider.of<StoresBloc>(context)
                     .stores!
-                    .firstWhere((e) => e.storeID == deal.storeID)
+                    .firstWhere((e) => e.storeID == storeID)
                     .images!
                     .iconUrl!,
                 errorBuilder: (_, __, ___) => const Icon(
@@ -48,12 +57,12 @@ class GameHeader extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              if (deal.dealRating != null)
+              if (dealRating != null)
                 RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: deal.dealRating!.toStringAsFixed(1),
+                        text: dealRating!.toStringAsFixed(1),
                         style: TextStyles.dealRating,
                       ),
                       TextSpan(text: '/10', style: TextStyles.dealRating2),

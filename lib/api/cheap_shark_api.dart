@@ -1,5 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:maniak_game_deals/models/deal_look_up_model.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/models/game_look_up_model.dart';
+import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:maniak_game_deals/models/store_model.dart';
 import 'package:maniak_game_deals/utils/consts.dart';
@@ -62,10 +65,8 @@ class CheapSharkApiProvider {
         queryParameters['title'] = title;
       }
 
-      final response = await _dio.get(
-        Endpoints.dealsEndpoint,
-        queryParameters: queryParameters,
-      );
+      final response =
+          await _dio.get(Endpoints.deals, queryParameters: queryParameters);
       return (response.data as Iterable)
           .map<DealModel>((e) => DealModel.fromJson(e, pageNumber))
           .toList();
@@ -76,7 +77,7 @@ class CheapSharkApiProvider {
 
   Future<List<StoreModel>> getStores() async {
     try {
-      final response = await _dio.get(Endpoints.storesEndpoint);
+      final response = await _dio.get(Endpoints.stores);
       return (response.data as Iterable)
           .map<StoreModel>((e) => StoreModel.fromJson(e))
           .toList();
@@ -87,11 +88,60 @@ class CheapSharkApiProvider {
 
   Future getDealLookup(String dealId) async {
     try {
-      final response = await _dio
-          .get(Endpoints.lookUpEndpoint.replaceFirst('{deal_id}', dealId));
+      final response =
+          await _dio.get(Endpoints.deals, queryParameters: {'id': dealId});
       return response.data;
     } catch (e) {
       throw 'getDealLookup: $e';
+    }
+  }
+
+  Future<List<GameModel>> getListOfGames(
+    String title, {
+    String? steamAppID,
+    int limit = 60,
+    bool exact = false,
+  }) async {
+    assert(limit >= 60 && limit > 0);
+    try {
+      final queryParameters = <String, dynamic>{
+        'title': title,
+        'limit': limit,
+        'exact': exact.toInt(),
+      };
+      if (steamAppID != null) queryParameters['steamAppID'] = steamAppID;
+      final response =
+          await _dio.get(Endpoints.games, queryParameters: queryParameters);
+      return (response.data as Iterable)
+          .map<GameModel>((e) => GameModel.fromJson(e))
+          .toList();
+    } catch (e) {
+      throw 'getListOfGames: $e';
+    }
+  }
+
+  Future<GameLookUpModel> getGameLookup(String gameID) async {
+    try {
+      final response =
+          await _dio.get(Endpoints.games, queryParameters: {'id': gameID});
+      return GameLookUpModel.fromJson(response.data);
+    } catch (e) {
+      throw 'getGameLookup: $e';
+    }
+  }
+
+  Future<DealLookUpModel> getDealLookUp(String dealID) async {
+    try {
+      final uri = Uri(
+        scheme: 'https',
+        host: 'www.cheapshark.com',
+        pathSegments: ['api', '1.0', 'deals'],
+        query: 'id=$dealID',
+      );
+      final response = await _dio.getUri(uri);
+      return DealLookUpModel.fromJson(response.data);
+    } catch (e) {
+      throw 'getDealLookUp: $e';
     }
   }
 }

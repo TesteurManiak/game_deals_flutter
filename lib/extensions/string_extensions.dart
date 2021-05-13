@@ -82,4 +82,6 @@ extension StringModifier on String {
 
   String removeNonAlphNum({String replaceBy = ''}) =>
       this.replaceAll(RegExp("[^a-zA-Z0-9] "), replaceBy);
+
+  String removeLastChar() => this.substring(0, this.length - 1);
 }

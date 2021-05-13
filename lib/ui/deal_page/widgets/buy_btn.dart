@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
-import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/style/my_gradients.dart';
 import 'package:maniak_game_deals/style/text_styles.dart';
@@ -12,9 +11,27 @@ import 'package:maniak_game_deals/extensions/extensions.dart'
     show IterableModifier;
 
 class BuyBtn extends StatelessWidget {
-  final DealModel deal;
+  final double salePrice;
+  final String storeID;
+  final String title;
+  final String? steamAppID;
+  final bool enabled;
 
-  BuyBtn(this.deal);
+  BuyBtn({
+    required this.salePrice,
+    required this.storeID,
+    required this.title,
+    required this.steamAppID,
+    this.enabled = true,
+  });
+
+  factory BuyBtn.disabled() => BuyBtn(
+        salePrice: 0,
+        storeID: '',
+        title: '',
+        steamAppID: null,
+        enabled: false,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -31,30 +48,35 @@ class BuyBtn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const SizedBox(width: 28),
-              Text(
-                '\$${deal.salePrice.toStringAsFixed(2)}',
-                style: TextStyles.dealPagePrice,
-              ),
+              enabled
+                  ? Text(
+                      '\$${salePrice.toStringAsFixed(2)}',
+                      style: TextStyles.dealPagePrice,
+                    )
+                  : Container(),
               const SizedBox(width: 28),
               ElevatedGradientButton(
                 child: const Text('Buy it Online', style: TextStyles.buyBtn),
-                gradient: MyGradients.buyBtn,
-                onPressed: () async {
-                  final store = BlocProvider.of<StoresBloc>(context)
-                      .stores
-                      ?.firstWhereNullable((e) => e.storeID == deal.storeID);
-                  if (store != null) {
-                    final url = Endpoints.storeUrl(
-                      store.storeEnum,
-                      deal.title,
-                      deal.steamAppID,
-                    );
-                    print(url);
-                    if (url != null && await canLaunch(url)) {
-                      await launch(url);
-                    }
-                  }
-                },
+                gradient:
+                    enabled ? MyGradients.buyBtn : MyGradients.disabledBtn,
+                onPressed: enabled
+                    ? () async {
+                        final store = BlocProvider.of<StoresBloc>(context)
+                            .stores
+                            ?.firstWhereNullable((e) => e.storeID == storeID);
+                        if (store != null) {
+                          final url = Endpoints.storeUrl(
+                            store.storeEnum,
+                            title,
+                            steamAppID,
+                          );
+                          print(url);
+                          if (url != null && await canLaunch(url)) {
+                            await launch(url);
+                          }
+                        }
+                      }
+                    : null,
                 borderRadius: BorderRadius.circular(100),
                 shadowColor: MyColors.buyBtnShadow.withOpacity(0.3),
               ),

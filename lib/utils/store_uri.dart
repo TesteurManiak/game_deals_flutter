@@ -18,9 +18,16 @@ class StoreUri {
       ).toString();
 
   static String greenManGaming(String gameTitle) => Uri(
-      scheme: 'https',
-      host: 'www.greenmangaming.com',
-      pathSegments: ['games', '${gameTitle.storeFormat()}-pc']).toString();
+        scheme: 'https',
+        host: 'www.greenmangaming.com',
+        pathSegments: [
+          'search',
+          gameTitle
+              .toLowerCase()
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace(),
+        ],
+      ).toString();
 
   static String origin(String gameTitle) => Uri(
         scheme: 'https',
@@ -35,8 +42,17 @@ class StoreUri {
   static String gog(String gameTitle) => Uri(
         scheme: 'https',
         host: 'www.gog.com',
-        pathSegments: ['game', gameTitle.storeFormat(replaceSpaceBy: '_')],
-      ).toString();
+        pathSegments: [
+          'game',
+          gameTitle
+              .toLowerCase()
+              .replaceAll("'", '')
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace()
+              .trim()
+              .replaceAll(' ', '_'),
+        ],
+      ).toString().replaceAll('+', '%20');
 
   static String gamesplanet(String gameTitle) => Uri(
         scheme: 'https',
@@ -47,11 +63,16 @@ class StoreUri {
         },
       ).toString();
 
-  static String humbleBundle(String gameTitle) => Uri(
-        scheme: 'https',
-        host: 'www.humblebundle.com',
-        pathSegments: ['store', gameTitle.storeFormat()],
-      ).toString();
+  static String humbleBundle(String gameTitle) =>
+      Uri(scheme: 'https', host: 'www.humblebundle.com', pathSegments: [
+        'store',
+        'search'
+      ], queryParameters: {
+        'search': gameTitle
+            .toLowerCase()
+            .removeNonAlphNum(replaceBy: ' ')
+            .singleSpace(),
+      }).toString();
 
   static String winGame(String gameTitle) => Uri(
         scheme: 'https',
@@ -106,4 +127,14 @@ class StoreUri {
         host: 'www.gamebillet.com',
         path: gameTitle.storeFormat(),
       ).toString();
+
+  static String battleNet(String gameTitle) =>
+      Uri(scheme: 'https', host: 'eu.shop.battle.net', pathSegments: [
+        'product',
+        gameTitle
+            .toLowerCase()
+            .removeNonAlphNum(replaceBy: ' ')
+            .singleSpace()
+            .replaceAll(' ', '-'),
+      ]).toString();
 }

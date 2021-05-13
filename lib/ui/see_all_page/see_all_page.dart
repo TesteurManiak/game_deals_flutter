@@ -27,7 +27,8 @@ class SeeAllPage extends StatefulWidget {
 }
 
 class _SeeAllPageState extends State<SeeAllPage> {
-  final _scrollController = ScrollController();
+  late final _scrollController = ScrollController()
+    ..addListener(_scrollListener);
 
   final _loadingController = BehaviorSubject<bool>.seeded(false);
   Stream<bool> get _onLoadingChanged => _loadingController.stream;
@@ -71,12 +72,6 @@ class _SeeAllPageState extends State<SeeAllPage> {
       }
     }
     return false;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_scrollListener);
   }
 
   @override

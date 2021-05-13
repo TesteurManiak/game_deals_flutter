@@ -1,10 +1,13 @@
+import 'dart:async';
+
 import 'package:maniak_game_deals/api/api_repository.dart';
 import 'package:maniak_game_deals/bloc/bloc.dart';
+import 'package:maniak_game_deals/models/deal_look_up_model.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:rxdart/rxdart.dart';
 
-class DealsBloc implements BlocBase {
+class DealsBloc extends BlocBase {
   final _bestDealsController = BehaviorSubject<List<DealModel>?>.seeded(null);
   Stream<List<DealModel>?> get onBestDealsChanged =>
       _bestDealsController.stream;
@@ -35,17 +38,11 @@ class DealsBloc implements BlocBase {
     }
   }
 
-  final _savingDealsController = BehaviorSubject<List<DealModel>?>.seeded(null);
-  Stream<List<DealModel>?> get onSavingDealsChanged =>
-      _savingDealsController.stream;
-  List<DealModel>? get savingDeals => _savingDealsController.value;
-
   @override
   void dispose() {
     _cheapestDealsController.close();
     _bestDealsController.close();
     _newestDealsController.close();
-    _savingDealsController.close();
   }
 
   @override
@@ -81,5 +78,10 @@ class DealsBloc implements BlocBase {
     );
     newDeals.addAll(fetchedDeals);
     _cheapestDealsController.sink.add(newDeals);
+  }
+
+  Future<DealLookUpModel> lookUpDeal(String dealID) async {
+    final fetchedDeal = await apiRepository.getDealLookUp(dealID);
+    return fetchedDeal;
   }
 }
