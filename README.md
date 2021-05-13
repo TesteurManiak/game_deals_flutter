@@ -54,7 +54,7 @@ No release planned. You will need to build the iPA yourself.
 * [ ] ![sila games](assets/img/stores/icons/17.png) Sila Games Store
 * [x] ![wingamestore](assets/img/stores/icons/20.png) WinGameStore
 * [ ] ![funstock](assets/img/stores/icons/21.png) Funstock
-* [ ] ![gamebillet](assets/img/stores/icons/22.png) Gamebillet
+* [x] ![gamebillet](assets/img/stores/icons/22.png) Gamebillet
 * [ ] ![voidu](assets/img/stores/icons/23.png) Voidu
 * [x] ![epic games store](assets/img/stores/icons/24.png) Epic Games Store
 * [x] ![gamesplanet](assets/img/stores/icons/26.png) Gamesplanet

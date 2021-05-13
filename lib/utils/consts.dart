@@ -20,7 +20,6 @@ class Endpoints {
     StoreEnum.games_republic: 'https://gamesrepublic.com/',
     StoreEnum.sila_games: 'https://store.silagames.com/',
     StoreEnum.funstock: 'https://funstock.co.uk/',
-    StoreEnum.gamebillet: 'https://www.gamebillet.com/',
     StoreEnum.voidu: 'https://www.voidu.com/',
     StoreEnum.gamesload: 'https://www.gamesload.com/',
     StoreEnum.two_game: 'https://2game.com/',
@@ -55,6 +54,8 @@ class Endpoints {
         return StoreUri.epicGames(gameTitle);
       case StoreEnum.fanatical:
         return StoreUri.fanatical(gameTitle);
+      case StoreEnum.gamebillet:
+        return StoreUri.gamebillet(gameTitle);
       default:
         return _storeUrls[storeId];
     }

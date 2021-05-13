@@ -72,8 +72,8 @@ extension StringModifier on String {
   }
 
   String storeFormat({String replaceSpaceBy = '-'}) => this
-      .singleSpace()
       .replaceAll(RegExp("[^a-zA-Z0-9 -]"), '')
+      .singleSpace()
       .replaceAll(' ', replaceSpaceBy)
       .toLowerCase()
       .trim();
