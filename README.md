@@ -67,7 +67,8 @@ No release planned. You will need to build the iPA yourself.
 ### Features
 
 * [x] Lazy loading
-* [ ] Search and Filters
+* [x] Search
+* [ ] Filters
 * [ ] Deal's Data (ex: price evolution chart)
 * [ ] Wishlist
 * [ ] Profile/Settings
