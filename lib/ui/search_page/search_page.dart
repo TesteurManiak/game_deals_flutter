@@ -3,6 +3,7 @@ import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
+import 'package:maniak_game_deals/ui/common/responsive.dart';
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search';
@@ -35,10 +36,14 @@ class _SearchPageState extends State<SearchPage> {
       ),
       body: StreamBuilder<List<GameModel>>(
         stream: _gamesBloc.onGamesChanged,
-        builder: (_, snapshot) {
+        builder: (streamContext, snapshot) {
           if (!snapshot.hasData) return const CircularProgressIndicator();
           if (snapshot.data!.isEmpty) return const Text('No game to display');
           return ListView.separated(
+            padding: EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: Responsive.isMobile(streamContext) ? 10 : 24,
+            ),
             itemCount: snapshot.data!.length,
             itemBuilder: (_, index) => ListTile(
               leading: DealIcon(
