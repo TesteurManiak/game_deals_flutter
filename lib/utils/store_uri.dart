@@ -127,4 +127,14 @@ class StoreUri {
         host: 'www.gamebillet.com',
         path: gameTitle.storeFormat(),
       ).toString();
+
+  static String battleNet(String gameTitle) =>
+      Uri(scheme: 'https', host: 'eu.shop.battle.net', pathSegments: [
+        'product',
+        gameTitle
+            .toLowerCase()
+            .removeNonAlphNum(replaceBy: ' ')
+            .singleSpace()
+            .replaceAll(' ', '-'),
+      ]).toString();
 }

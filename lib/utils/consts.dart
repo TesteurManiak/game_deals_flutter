@@ -56,6 +56,8 @@ class Endpoints {
         return StoreUri.fanatical(gameTitle);
       case StoreEnum.gamebillet:
         return StoreUri.gamebillet(gameTitle);
+      case StoreEnum.battle_net:
+        return StoreUri.battleNet(gameTitle);
       default:
         return _storeUrls[storeId];
     }

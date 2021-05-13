@@ -57,7 +57,8 @@ class BuyBtn extends StatelessWidget {
               const SizedBox(width: 28),
               ElevatedGradientButton(
                 child: const Text('Buy it Online', style: TextStyles.buyBtn),
-                gradient: MyGradients.buyBtn,
+                gradient:
+                    enabled ? MyGradients.buyBtn : MyGradients.disabledBtn,
                 onPressed: enabled
                     ? () async {
                         final store = BlocProvider.of<StoresBloc>(context)
