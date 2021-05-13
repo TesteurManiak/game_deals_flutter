@@ -1,7 +1,3 @@
-import 'package:maniak_game_deals/models/store_enum.dart';
-import 'package:maniak_game_deals/extensions/extensions.dart'
-    show StringModifier;
-
 class _Info {
   final String title;
   final String? steamAppID;
@@ -36,15 +32,13 @@ class AvailableDeal {
   final double retailPrice;
   final double savings;
 
-  final StoreEnum? storeEnum;
-
   AvailableDeal({
     required this.storeID,
     required this.dealID,
     required this.price,
     required this.retailPrice,
     required this.savings,
-  }) : storeEnum = storeID.toStoreEnum();
+  });
 
   factory AvailableDeal.fromJson(Map<String, dynamic> json) => AvailableDeal(
         storeID: json['storeID'],

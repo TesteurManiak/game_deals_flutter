@@ -18,9 +18,16 @@ class StoreUri {
       ).toString();
 
   static String greenManGaming(String gameTitle) => Uri(
-      scheme: 'https',
-      host: 'www.greenmangaming.com',
-      pathSegments: ['games', '${gameTitle.storeFormat()}-pc']).toString();
+        scheme: 'https',
+        host: 'www.greenmangaming.com',
+        pathSegments: [
+          'search',
+          gameTitle
+              .toLowerCase()
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace(),
+        ],
+      ).toString();
 
   static String origin(String gameTitle) => Uri(
         scheme: 'https',

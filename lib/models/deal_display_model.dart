@@ -1,4 +1,5 @@
 import 'package:maniak_game_deals/models/deal_model.dart';
+import 'package:maniak_game_deals/models/game_look_up_model.dart';
 
 class DealDisplayModel {
   final String dealID;
@@ -25,5 +26,17 @@ class DealDisplayModel {
         title: dealModel.title,
         uid: dealModel.uid,
         dealRating: dealModel.dealRating,
+      );
+
+  factory DealDisplayModel.fromAvailableDeal(
+    AvailableDeal availableDeal,
+    String thumb,
+    String title,
+  ) =>
+      DealDisplayModel(
+        dealID: availableDeal.dealID,
+        thumb: thumb,
+        storeID: availableDeal.storeID,
+        title: title,
       );
 }

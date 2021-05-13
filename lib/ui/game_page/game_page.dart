@@ -47,8 +47,11 @@ class _GamePageState extends State<GamePage> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: snapshot.data!.deals.length,
-                    itemBuilder: (_, index) =>
-                        AvailableDealTile(snapshot.data!.deals[index]),
+                    itemBuilder: (_, index) => AvailableDealTile(
+                      availableDeal: snapshot.data!.deals[index],
+                      thumb: snapshot.data!.info.thumb,
+                      title: snapshot.data!.info.title,
+                    ),
                   ),
                 )
               ],
