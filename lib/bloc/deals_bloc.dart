@@ -7,7 +7,7 @@ import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:rxdart/rxdart.dart';
 
-class DealsBloc implements BlocBase {
+class DealsBloc extends BlocBase {
   final _bestDealsController = BehaviorSubject<List<DealModel>?>.seeded(null);
   Stream<List<DealModel>?> get onBestDealsChanged =>
       _bestDealsController.stream;
