@@ -42,7 +42,7 @@ No release planned. You will need to build the iPA yourself.
 * [ ] ![gamestop](assets/img/stores/icons/4.png) GameStop
 * [ ] ![direct2drive](assets/img/stores/icons/5.png) Direct2Drive
 * [x] ![gog](assets/img/stores/icons/6.png) GoG
-* [ ] ![origin](assets/img/stores/icons/7.png) Origin
+* [x] ![origin](assets/img/stores/icons/7.png) Origin
 * [ ] ![getgamesgo](assets/img/stores/icons/8.png) GetGamesGo
 * [ ] ![shiny loot](assets/img/stores/icons/9.png) Shiny Loot
 * [x] ![humble bundle store](assets/img/stores/icons/10.png) Humble Bundle Store
@@ -52,7 +52,7 @@ No release planned. You will need to build the iPA yourself.
 * [ ] ![gamesrocket](assets/img/stores/icons/15.png) GamesRocket
 * [ ] ![games republic](assets/img/stores/icons/16.png) Games Republic
 * [ ] ![sila games](assets/img/stores/icons/17.png) Sila Games Store
-* [ ] ![wingamestore](assets/img/stores/icons/20.png) WinGameStore
+* [x] ![wingamestore](assets/img/stores/icons/20.png) WinGameStore
 * [ ] ![funstock](assets/img/stores/icons/21.png) Funstock
 * [ ] ![gamebillet](assets/img/stores/icons/22.png) Gamebillet
 * [ ] ![voidu](assets/img/stores/icons/23.png) Voidu

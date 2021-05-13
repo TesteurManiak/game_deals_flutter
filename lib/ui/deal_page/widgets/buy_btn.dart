@@ -44,7 +44,7 @@ class BuyBtn extends StatelessWidget {
                       .stores
                       ?.firstWhereNullable((e) => e.storeID == deal.storeID);
                   if (store != null) {
-                    final url = Consts.storeUrl(
+                    final url = Endpoints.storeUrl(
                       store.storeEnum,
                       deal.title,
                       deal.steamAppID,
