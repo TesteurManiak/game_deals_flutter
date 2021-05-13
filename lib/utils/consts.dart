@@ -2,10 +2,10 @@ import 'package:maniak_game_deals/models/store_enum.dart';
 import 'package:maniak_game_deals/utils/store_uri.dart';
 
 class Endpoints {
-  static const dealsEndpoint = "https://www.cheapshark.com/api/1.0/deals";
-  static const storesEndpoint = "https://www.cheapshark.com/api/1.0/stores";
-  static const lookUpEndpoint = "https://www.cheapshark.com/api/1.0/deals";
-  static const gamesEndpoint = 'https://www.cheapshark.com/api/1.0/games';
+  static const deals = 'https://www.cheapshark.com/api/1.0/deals';
+  static const stores = 'https://www.cheapshark.com/api/1.0/stores';
+  static const games = 'https://www.cheapshark.com/api/1.0/games';
+
   static final registeredHeroId = Set<String>();
 
   static const _storeUrls = <StoreEnum, String>{

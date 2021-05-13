@@ -35,8 +35,17 @@ class StoreUri {
   static String gog(String gameTitle) => Uri(
         scheme: 'https',
         host: 'www.gog.com',
-        pathSegments: ['game', gameTitle.storeFormat(replaceSpaceBy: '_')],
-      ).toString();
+        pathSegments: [
+          'game',
+          gameTitle
+              .toLowerCase()
+              .replaceAll("'", '')
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace()
+              .trim()
+              .replaceAll(' ', '_'),
+        ],
+      ).toString().replaceAll('+', '%20');
 
   static String gamesplanet(String gameTitle) => Uri(
         scheme: 'https',

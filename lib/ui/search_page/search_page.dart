@@ -4,6 +4,7 @@ import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
+import 'package:maniak_game_deals/ui/game_page/game_page.dart';
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search';
@@ -56,7 +57,14 @@ class _SearchPageState extends State<SearchPage> {
               trailing: Text(
                 '\$${snapshot.data![index].cheapest.toStringAsFixed(2)}',
               ),
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(
+                context,
+                GamePage.routeName,
+                arguments: [
+                  snapshot.data![index].gameExternal,
+                  snapshot.data![index].gameID,
+                ],
+              ),
             ),
             separatorBuilder: (_, __) => const SizedBox(height: 8),
           );
