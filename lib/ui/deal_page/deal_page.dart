@@ -57,7 +57,7 @@ class _DealPageState extends State<DealPage> {
           FutureBuilder<DealLookUpModel>(
             future: _future,
             builder: (_, snapshot) {
-              if (!snapshot.hasData) return const CircularProgressIndicator();
+              if (!snapshot.hasData) return BuyBtn.disabled();
               return BuyBtn(
                 salePrice: snapshot.data!.gameInfo.salePrice,
                 storeID: snapshot.data!.gameInfo.storeID,

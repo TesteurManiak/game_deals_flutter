@@ -139,7 +139,6 @@ class CheapSharkApiProvider {
         query: 'id=$dealID',
       );
       final response = await _dio.getUri(uri);
-      print(response.data);
       return DealLookUpModel.fromJson(response.data);
     } catch (e) {
       throw 'getDealLookUp: $e';

@@ -56,11 +56,16 @@ class StoreUri {
         },
       ).toString();
 
-  static String humbleBundle(String gameTitle) => Uri(
-        scheme: 'https',
-        host: 'www.humblebundle.com',
-        pathSegments: ['store', gameTitle.storeFormat()],
-      ).toString();
+  static String humbleBundle(String gameTitle) =>
+      Uri(scheme: 'https', host: 'www.humblebundle.com', pathSegments: [
+        'store',
+        'search'
+      ], queryParameters: {
+        'search': gameTitle
+            .toLowerCase()
+            .removeNonAlphNum(replaceBy: ' ')
+            .singleSpace(),
+      }).toString();
 
   static String winGame(String gameTitle) => Uri(
         scheme: 'https',

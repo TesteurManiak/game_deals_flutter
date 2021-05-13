@@ -15,13 +15,23 @@ class BuyBtn extends StatelessWidget {
   final String storeID;
   final String title;
   final String? steamAppID;
+  final bool enabled;
 
   BuyBtn({
     required this.salePrice,
     required this.storeID,
     required this.title,
     required this.steamAppID,
+    this.enabled = true,
   });
+
+  factory BuyBtn.disabled() => BuyBtn(
+        salePrice: 0,
+        storeID: '',
+        title: '',
+        steamAppID: null,
+        enabled: false,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -38,30 +48,34 @@ class BuyBtn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const SizedBox(width: 28),
-              Text(
-                '\$${salePrice.toStringAsFixed(2)}',
-                style: TextStyles.dealPagePrice,
-              ),
+              enabled
+                  ? Text(
+                      '\$${salePrice.toStringAsFixed(2)}',
+                      style: TextStyles.dealPagePrice,
+                    )
+                  : Container(),
               const SizedBox(width: 28),
               ElevatedGradientButton(
                 child: const Text('Buy it Online', style: TextStyles.buyBtn),
                 gradient: MyGradients.buyBtn,
-                onPressed: () async {
-                  final store = BlocProvider.of<StoresBloc>(context)
-                      .stores
-                      ?.firstWhereNullable((e) => e.storeID == storeID);
-                  if (store != null) {
-                    final url = Endpoints.storeUrl(
-                      store.storeEnum,
-                      title,
-                      steamAppID,
-                    );
-                    print(url);
-                    if (url != null && await canLaunch(url)) {
-                      await launch(url);
-                    }
-                  }
-                },
+                onPressed: enabled
+                    ? () async {
+                        final store = BlocProvider.of<StoresBloc>(context)
+                            .stores
+                            ?.firstWhereNullable((e) => e.storeID == storeID);
+                        if (store != null) {
+                          final url = Endpoints.storeUrl(
+                            store.storeEnum,
+                            title,
+                            steamAppID,
+                          );
+                          print(url);
+                          if (url != null && await canLaunch(url)) {
+                            await launch(url);
+                          }
+                        }
+                      }
+                    : null,
                 borderRadius: BorderRadius.circular(100),
                 shadowColor: MyColors.buyBtnShadow.withOpacity(0.3),
               ),
