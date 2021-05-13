@@ -88,4 +88,16 @@ class StoreUri {
               .singleSpace(),
         },
       ).toString();
+
+  static String fanatical(String gameTitle) => Uri(
+        scheme: 'https',
+        host: 'www.fanatical.com',
+        path: 'search',
+        queryParameters: {
+          'search': gameTitle
+              .toLowerCase()
+              .removeNonAlphNum(replaceBy: ' ')
+              .singleSpace(),
+        },
+      ).toString();
 }

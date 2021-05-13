@@ -48,7 +48,7 @@ No release planned. You will need to build the iPA yourself.
 * [x] ![humble bundle store](assets/img/stores/icons/10.png) Humble Bundle Store
 * [ ] ![desura](assets/img/stores/icons/11.png) Desura
 * [ ] ![uplay](assets/img/stores/icons/12.png) Uplay
-* [ ] ![fanatical](assets/img/stores/icons/14.png) Fanatical
+* [x] ![fanatical](assets/img/stores/icons/14.png) Fanatical
 * [ ] ![gamesrocket](assets/img/stores/icons/15.png) GamesRocket
 * [ ] ![games republic](assets/img/stores/icons/16.png) Games Republic
 * [ ] ![sila games](assets/img/stores/icons/17.png) Sila Games Store

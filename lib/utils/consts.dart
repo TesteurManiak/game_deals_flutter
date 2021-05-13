@@ -16,7 +16,6 @@ class Endpoints {
     StoreEnum.shiny_loot: 'https://shinyloot.com/',
     StoreEnum.desura: 'https://www.desura.com/',
     StoreEnum.uplay: 'https://store.ubi.com/',
-    StoreEnum.fanatical: 'https://www.fanatical.com/',
     StoreEnum.games_rocket: 'https://us.gamesrocket.com/',
     StoreEnum.games_republic: 'https://gamesrepublic.com/',
     StoreEnum.sila_games: 'https://store.silagames.com/',
@@ -54,6 +53,8 @@ class Endpoints {
         return StoreUri.indieGala(gameTitle);
       case StoreEnum.epic_games:
         return StoreUri.epicGames(gameTitle);
+      case StoreEnum.fanatical:
+        return StoreUri.fanatical(gameTitle);
       default:
         return _storeUrls[storeId];
     }
