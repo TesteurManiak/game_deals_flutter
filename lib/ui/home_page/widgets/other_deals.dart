@@ -11,7 +11,7 @@ class OtherDeals extends StatelessWidget {
   final String title;
   final VoidCallback seeAllCallback;
 
-  OtherDeals(this.title, this.deals, this.seeAllCallback, {this.height = 184});
+  OtherDeals(this.title, this.deals, this.seeAllCallback, {this.height = 188});
 
   @override
   Widget build(BuildContext context) {

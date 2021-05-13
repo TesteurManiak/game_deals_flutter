@@ -63,7 +63,7 @@ class CheapSharkApiProvider {
       }
 
       final response = await _dio.get(
-        Consts.dealsEndpoint,
+        Endpoints.dealsEndpoint,
         queryParameters: queryParameters,
       );
       return (response.data as Iterable)
@@ -76,7 +76,7 @@ class CheapSharkApiProvider {
 
   Future<List<StoreModel>> getStores() async {
     try {
-      final response = await _dio.get(Consts.storesEndpoint);
+      final response = await _dio.get(Endpoints.storesEndpoint);
       return (response.data as Iterable)
           .map<StoreModel>((e) => StoreModel.fromJson(e))
           .toList();
@@ -88,7 +88,7 @@ class CheapSharkApiProvider {
   Future getDealLookup(String dealId) async {
     try {
       final response = await _dio
-          .get(Consts.lookUpEndpoint.replaceFirst('{deal_id}', dealId));
+          .get(Endpoints.lookUpEndpoint.replaceFirst('{deal_id}', dealId));
       return response.data;
     } catch (e) {
       throw 'getDealLookup: $e';

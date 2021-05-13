@@ -1,4 +1,6 @@
-import 'package:maniak_game_deals/extensions/extensions.dart' show IntModifier;
+import 'package:maniak_game_deals/extensions/extensions.dart'
+    show IntModifier, StringModifier;
+import 'package:maniak_game_deals/models/store_enum.dart';
 
 class _StoreImages {
   final String? banner;
@@ -26,12 +28,14 @@ class StoreModel {
   final bool isActive;
   final _StoreImages? images;
 
+  final StoreEnum? storeEnum;
+
   StoreModel({
     required this.storeID,
     required this.storeName,
     required this.isActive,
     required this.images,
-  });
+  }) : storeEnum = storeID.toStoreEnum();
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(
         storeID: json['storeID'],

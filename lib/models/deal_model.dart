@@ -75,7 +75,7 @@ class DealModel {
   }) {
     final random = Random();
     _id = random.nextInt(1000000);
-    while (Consts.registeredHeroId.contains(_id)) {
+    while (Endpoints.registeredHeroId.contains(_id)) {
       _id = random.nextInt(1000000);
     }
   }
