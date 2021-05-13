@@ -88,8 +88,10 @@ class CheapSharkApiProvider {
 
   Future getDealLookup(String dealId) async {
     try {
-      final response = await _dio
-          .get(Endpoints.lookUpEndpoint.replaceFirst('{deal_id}', dealId));
+      final response = await _dio.get(
+        Endpoints.lookUpEndpoint,
+        queryParameters: {'id': dealId},
+      );
       return response.data;
     } catch (e) {
       throw 'getDealLookup: $e';
