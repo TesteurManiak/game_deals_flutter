@@ -16,7 +16,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final _controller = TextEditingController();
 
-  late final GamesBloc _gamesBloc = BlocProvider.of<GamesBloc>(context);
+  late final _gamesBloc = BlocProvider.of<GamesBloc>(context);
 
   void _openFiltersDialog() {
     showDialog<bool>(context: context, builder: (_) => FiltersDialog())

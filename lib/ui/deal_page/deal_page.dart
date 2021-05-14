@@ -20,7 +20,7 @@ class DealPage extends StatefulWidget {
 
 class _DealPageState extends State<DealPage> {
   late final Future<DealLookUpModel> _future;
-  late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
+  late final _dealsBloc = BlocProvider.of<DealsBloc>(context);
 
   @override
   void initState() {

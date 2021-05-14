@@ -14,8 +14,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
-  late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
-  late final StoresBloc _storesBloc = BlocProvider.of<StoresBloc>(context);
+  late final _dealsBloc = BlocProvider.of<DealsBloc>(context);
+  late final _storesBloc = BlocProvider.of<StoresBloc>(context);
 
   Future<void> _loadAllData() async {
     await Future.wait([

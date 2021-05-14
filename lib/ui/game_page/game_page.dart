@@ -17,14 +17,8 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  late final GamesBloc _gamesBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    _gamesBloc = BlocProvider.of<GamesBloc>(context);
-    _gamesBloc.gameLookup(widget.gameID);
-  }
+  late final _gamesBloc = BlocProvider.of<GamesBloc>(context)
+    ..gameLookup(widget.gameID);
 
   @override
   Widget build(BuildContext context) {
