@@ -71,13 +71,6 @@ extension StringModifier on String {
     }
   }
 
-  String storeFormat({String replaceSpaceBy = '-'}) => this
-      .replaceAll(RegExp("[^a-zA-Z0-9 -]"), '')
-      .singleSpace()
-      .replaceAll(' ', replaceSpaceBy)
-      .toLowerCase()
-      .trim();
-
   String singleSpace() => this.replaceAll(RegExp(' +'), ' ');
 
   String removeNonAlphNum({String replaceBy = ''}) =>

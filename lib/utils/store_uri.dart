@@ -125,7 +125,11 @@ class StoreUri {
   static String gamebillet(String gameTitle) => Uri(
         scheme: 'https',
         host: 'www.gamebillet.com',
-        path: gameTitle.storeFormat(),
+        path: gameTitle
+            .toLowerCase()
+            .removeNonAlphNum(replaceBy: ' ')
+            .singleSpace()
+            .replaceAll(' ', '-'),
       ).toString();
 
   static String battleNet(String gameTitle) =>
