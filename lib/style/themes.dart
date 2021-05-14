@@ -38,6 +38,9 @@ class Themes {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(primary: MyColors.textButton),
       ),
+      dialogTheme: _baseLight.dialogTheme.copyWith(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      ),
     );
     return _light;
   }

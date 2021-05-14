@@ -13,14 +13,14 @@ import 'package:maniak_game_deals/extensions/extensions.dart'
 class BuyBtn extends StatelessWidget {
   final double salePrice;
   final String storeID;
-  final String title;
+  final String dealID;
   final String? steamAppID;
   final bool enabled;
 
   BuyBtn({
     required this.salePrice,
     required this.storeID,
-    required this.title,
+    required this.dealID,
     required this.steamAppID,
     this.enabled = true,
   });
@@ -28,7 +28,7 @@ class BuyBtn extends StatelessWidget {
   factory BuyBtn.disabled() => BuyBtn(
         salePrice: 0,
         storeID: '',
-        title: '',
+        dealID: '',
         steamAppID: null,
         enabled: false,
       );
@@ -66,9 +66,9 @@ class BuyBtn extends StatelessWidget {
                             ?.firstWhereNullable((e) => e.storeID == storeID);
                         if (store != null) {
                           final url = Endpoints.storeUrl(
-                            store.storeEnum,
-                            title,
-                            steamAppID,
+                            storeId: store.storeEnum,
+                            dealID: dealID,
+                            steamAppID: steamAppID,
                           );
                           print(url);
                           if (url != null && await canLaunch(url)) {

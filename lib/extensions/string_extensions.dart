@@ -79,4 +79,6 @@ extension StringModifier on String {
       this.replaceAll(RegExp("[^a-zA-Z0-9] "), replaceBy);
 
   String removeLastChar() => this.substring(0, this.length - 1);
+
+  String capitalizeFirstChar() => this[0].toUpperCase() + this.substring(1);
 }

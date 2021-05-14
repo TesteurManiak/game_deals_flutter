@@ -20,7 +20,7 @@ class DealPage extends StatefulWidget {
 
 class _DealPageState extends State<DealPage> {
   late final Future<DealLookUpModel> _future;
-  late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
+  late final _dealsBloc = BlocProvider.of<DealsBloc>(context);
 
   @override
   void initState() {
@@ -61,8 +61,8 @@ class _DealPageState extends State<DealPage> {
               return BuyBtn(
                 salePrice: snapshot.data!.gameInfo.salePrice,
                 storeID: snapshot.data!.gameInfo.storeID,
-                title: snapshot.data!.gameInfo.name,
                 steamAppID: snapshot.data!.gameInfo.steamAppID,
+                dealID: widget.displayModel.dealID,
               );
             },
           ),
