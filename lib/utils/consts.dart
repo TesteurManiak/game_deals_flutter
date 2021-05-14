@@ -17,11 +17,6 @@ class Endpoints {
     if (storeId == StoreEnum.steam && steamAppID != null) {
       return StoreUri.steam(steamAppID);
     }
-    return Uri(
-      scheme: 'https',
-      host: 'www.cheapshark.com',
-      path: 'redirect',
-      query: 'dealID=$dealID',
-    ).toString();
+    return StoreUri.other(dealID);
   }
 }
