@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
+import 'package:maniak_game_deals/models/filters_actions_enum.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/filters_dialog.dart';
@@ -19,12 +20,18 @@ class _SearchPageState extends State<SearchPage> {
   late final _gamesBloc = BlocProvider.of<GamesBloc>(context);
 
   void _openFiltersDialog() {
-    showDialog<bool>(context: context, builder: (_) => FiltersDialog())
-        .then((value) {
-      if (value == null || !value) {
-        print('Dont update filters');
-      } else {
-        print('Update filters');
+    showDialog<FiltersActions>(
+        context: context, builder: (_) => FiltersDialog()).then((value) {
+      switch (value) {
+        case FiltersActions.filters:
+          print('Update filters');
+          break;
+        case FiltersActions.reset:
+          print('Reset filters');
+          break;
+        default:
+          print('Dont update filters');
+          break;
       }
     });
   }
