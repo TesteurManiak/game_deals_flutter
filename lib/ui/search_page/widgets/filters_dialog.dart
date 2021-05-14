@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maniak_game_deals/ui/search_page/widgets/results_number_dropdown_btn.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/stores_dropdown_btn.dart';
 
 class FiltersDialog extends StatefulWidget {
@@ -15,7 +16,8 @@ class _FiltersDialogState extends State<FiltersDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            StoresDropDownBtn(),
+            StoresDropDownButton(),
+            ResultsNumberDropdownButton(),
           ],
         ),
       ),
