@@ -3,6 +3,7 @@ import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
+import 'package:maniak_game_deals/ui/search_page/widgets/filters_dialog.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/game_tile.dart';
 
 class SearchPage extends StatefulWidget {
@@ -17,6 +18,17 @@ class _SearchPageState extends State<SearchPage> {
 
   late final GamesBloc _gamesBloc = BlocProvider.of<GamesBloc>(context);
 
+  void _openFiltersDialog() {
+    showDialog<bool>(context: context, builder: (_) => FiltersDialog())
+        .then((value) {
+      if (value == null || !value) {
+        print('Dont update filters');
+      } else {
+        print('Update filters');
+      }
+    });
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -30,19 +42,20 @@ class _SearchPageState extends State<SearchPage> {
         title: TextField(
           controller: _controller,
           autofocus: true,
-          decoration: InputDecoration(hintText: 'Search'),
+          decoration: InputDecoration(
+            hintText: 'Search',
+            suffixIcon: IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () => _gamesBloc.fetchGames(_controller.text),
+            ),
+          ),
           onSubmitted: (value) => _gamesBloc.fetchGames(value),
         ),
         actions: [
-          StreamBuilder<List<GameModel>?>(
-            stream: _gamesBloc.onGamesChanged,
-            builder: (_, snapshot) => IconButton(
-              icon: const Icon(Icons.sort),
-              onPressed: snapshot.data != null && snapshot.data!.isNotEmpty
-                  ? () => print('Filter results')
-                  : null,
-            ),
-          )
+          IconButton(
+            icon: const Icon(Icons.sort),
+            onPressed: _openFiltersDialog,
+          ),
         ],
       ),
       body: StreamBuilder<List<GameModel>?>(
