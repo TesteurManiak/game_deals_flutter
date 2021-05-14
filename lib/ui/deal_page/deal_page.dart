@@ -61,8 +61,8 @@ class _DealPageState extends State<DealPage> {
               return BuyBtn(
                 salePrice: snapshot.data!.gameInfo.salePrice,
                 storeID: snapshot.data!.gameInfo.storeID,
-                title: snapshot.data!.gameInfo.name,
                 steamAppID: snapshot.data!.gameInfo.steamAppID,
+                dealID: widget.displayModel.dealID,
               );
             },
           ),
