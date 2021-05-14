@@ -58,8 +58,18 @@ class ApiRepository {
 
   Future<List<StoreModel>> getStores() => _cheapSharkApiProvider.getStores();
 
-  Future<List<GameModel>> getGames(String title) =>
-      _cheapSharkApiProvider.getListOfGames(title);
+  Future<List<GameModel>> getGames({
+    String? title,
+    int? steamAppID,
+    int limit = 60,
+    bool exact = false,
+  }) =>
+      _cheapSharkApiProvider.getListOfGames(
+        title: title,
+        steamAppID: steamAppID,
+        limit: limit,
+        exact: exact,
+      );
 
   Future<GameLookUpModel> getGameLookUp(String gameID) =>
       _cheapSharkApiProvider.getGameLookup(gameID);

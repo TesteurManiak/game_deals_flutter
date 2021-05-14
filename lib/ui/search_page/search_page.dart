@@ -43,7 +43,7 @@ class _SearchPageState extends State<SearchPage> {
           controller: _controller,
           autofocus: true,
           decoration: InputDecoration(
-            hintText: 'Search',
+            hintText: 'Game name or Steam ID',
             suffixIcon: IconButton(
               icon: Icon(Icons.search),
               onPressed: () => _gamesBloc.fetchGames(_controller.text),

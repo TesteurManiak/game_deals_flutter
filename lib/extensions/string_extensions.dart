@@ -6,6 +6,8 @@ extension StringModifier on String {
     return val != null && val > 0 ? true : false;
   }
 
+  bool isNumeric() => int.tryParse(this) != null;
+
   /// Return the `StoreEnum` corresponding to its `storeID`, this method will
   /// return `null` otherwise.
   StoreEnum? toStoreEnum() {

@@ -3,6 +3,8 @@ import 'package:maniak_game_deals/bloc/bloc.dart';
 import 'package:maniak_game_deals/models/game_look_up_model.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:maniak_game_deals/extensions/extensions.dart'
+    show StringModifier;
 
 class GamesBloc extends BlocBase {
   final _gamesController = BehaviorSubject<List<GameModel>?>.seeded([]);
@@ -26,7 +28,13 @@ class GamesBloc extends BlocBase {
 
   Future<void> fetchGames(String title) async {
     _gamesController.sink.add(null);
-    final fetchedGames = await apiRepository.getGames(title);
+    late final List<GameModel> fetchedGames;
+    if (title.isNumeric()) {
+      final steamAppID = int.parse(title);
+      fetchedGames = await apiRepository.getGames(steamAppID: steamAppID);
+    } else {
+      fetchedGames = await apiRepository.getGames(title: title);
+    }
     _gamesController.sink.add(fetchedGames);
   }
 
