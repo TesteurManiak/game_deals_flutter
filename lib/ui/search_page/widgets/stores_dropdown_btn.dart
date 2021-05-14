@@ -10,13 +10,7 @@ class StoresDropDownButton extends StatefulWidget {
 
 class _StoresDropDownButtonState extends State<StoresDropDownButton> {
   late final _storesBloc = BlocProvider.of<StoresBloc>(context);
-  late StoreModel? _value;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = _storesBloc.stores?.first;
-  }
+  StoreModel? _value;
 
   @override
   Widget build(BuildContext context) {
