@@ -19,9 +19,9 @@ class SearchBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
-            children: [
+            children: const [
               Icon(Icons.search),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Expanded(
                 child: Text('Search for a game'),
               ),

@@ -6,7 +6,7 @@ import 'package:maniak_game_deals/ui/home_page/widgets/home_content.dart';
 class HomeWebLayout extends StatelessWidget {
   final List<BottomNavigationBarItem> items;
 
-  HomeWebLayout(this.items);
+  const HomeWebLayout(this.items);
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,9 @@ class HomeWebLayout extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                DrawerHeader(
+                const DrawerHeader(
                   decoration: BoxDecoration(color: MyColors.appLogo),
-                  child: const AppLogo(avatarSize: 40),
+                  child: AppLogo(avatarSize: 40),
                 ),
                 ...items
                     .map<Widget>(

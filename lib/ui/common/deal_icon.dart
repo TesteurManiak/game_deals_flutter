@@ -8,7 +8,7 @@ class DealIcon extends StatelessWidget {
   final String thumb;
   final double radius;
 
-  DealIcon(
+  const DealIcon(
     this.thumb, {
     this.height = 100,
     this.width = 100,
@@ -26,7 +26,7 @@ class DealIcon extends StatelessWidget {
         width: width,
         fit: BoxFit.cover,
         placeholder: (_, __) =>
-            Center(child: const CircularProgressIndicator()),
+            const Center(child: CircularProgressIndicator()),
         errorWidget: (_, __, ___) => Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius),

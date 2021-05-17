@@ -23,8 +23,8 @@ class _StoresDropDownButtonState extends State<StoresDropDownButton> {
           items: _storesBloc.stores!
               .map<DropdownMenuItem<StoreModel>>(
                 (e) => DropdownMenuItem(
-                  child: Text(e.storeName),
                   value: e,
+                  child: Text(e.storeName),
                 ),
               )
               .toList(),

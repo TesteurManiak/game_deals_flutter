@@ -14,24 +14,24 @@ class CheapSharkApiProvider {
 
   CheapSharkApiProvider(this._dio);
 
-  Future<List<DealModel>> getDeals(
-    List<String>? storeIds,
-    int pageNumber,
-    int pageSize,
-    DealSort sortBy,
-    bool desc,
-    int lowerPrice,
-    int upperPrice,
-    int? metacritic,
-    int? steamRating,
-    String? steamAppID,
-    String? title,
-    bool exact,
-    bool aaa,
-    bool steamworks,
-    bool onSale,
-    String? output,
-  ) async {
+  Future<List<DealModel>> getDeals({
+    required List<String>? storeIds,
+    required int pageNumber,
+    required int pageSize,
+    required DealSort sortBy,
+    required bool desc,
+    required int lowerPrice,
+    required int upperPrice,
+    required int? metacritic,
+    required int? steamRating,
+    required String? steamAppID,
+    required String? title,
+    required bool exact,
+    required bool aaa,
+    required bool steamworks,
+    required bool onSale,
+    required String? output,
+  }) async {
     assert(pageNumber >= 0);
     assert(pageSize <= 60 && pageSize > 0);
     assert(lowerPrice >= 0);
@@ -79,7 +79,8 @@ class CheapSharkApiProvider {
     try {
       final response = await _dio.get(Endpoints.stores);
       return (response.data as Iterable)
-          .map<StoreModel>((e) => StoreModel.fromJson(e))
+          .map<StoreModel>(
+              (e) => StoreModel.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (e) {
       throw 'getStores: $e';
@@ -114,7 +115,7 @@ class CheapSharkApiProvider {
       final response =
           await _dio.get(Endpoints.games, queryParameters: queryParameters);
       return (response.data as Iterable)
-          .map<GameModel>((e) => GameModel.fromJson(e))
+          .map<GameModel>((e) => GameModel.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (e) {
       throw 'getListOfGames: $e';
@@ -125,7 +126,7 @@ class CheapSharkApiProvider {
     try {
       final response =
           await _dio.get(Endpoints.games, queryParameters: {'id': gameID});
-      return GameLookUpModel.fromJson(response.data);
+      return GameLookUpModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       throw 'getGameLookup: $e';
     }
@@ -140,7 +141,7 @@ class CheapSharkApiProvider {
         query: 'id=$dealID',
       );
       final response = await _dio.getUri(uri);
-      return DealLookUpModel.fromJson(response.data);
+      return DealLookUpModel.fromJson(response.data as Map<String, dynamic>);
     } catch (e) {
       throw 'getDealLookUp: $e';
     }

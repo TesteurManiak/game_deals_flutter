@@ -12,7 +12,7 @@ class AvailableDealTile extends StatelessWidget {
   final String thumb;
   final String title;
 
-  AvailableDealTile({
+  const AvailableDealTile({
     required this.availableDeal,
     required this.thumb,
     required this.title,

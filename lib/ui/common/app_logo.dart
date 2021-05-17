@@ -28,30 +28,28 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          CircleAvatar(
-            backgroundColor: backgroundColor,
-            radius: avatarSize,
-            child: Icon(
-              Icons.gamepad,
-              size: avatarSize,
-              color: iconColor,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CircleAvatar(
+          backgroundColor: backgroundColor,
+          radius: avatarSize,
+          child: Icon(
+            Icons.gamepad,
+            size: avatarSize,
+            color: iconColor,
+          ),
+        ),
+        if (showTitle) const SizedBox(height: 10),
+        if (showTitle)
+          const Text(
+            'Game Store',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
             ),
           ),
-          if (showTitle) const SizedBox(height: 10),
-          if (showTitle)
-            const Text(
-              'Game Store',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
-        ],
-      ),
+      ],
     );
   }
 }

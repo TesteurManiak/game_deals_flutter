@@ -6,7 +6,7 @@ class Endpoints {
   static const stores = 'https://www.cheapshark.com/api/1.0/stores';
   static const games = 'https://www.cheapshark.com/api/1.0/games';
 
-  static final registeredHeroId = Set<String>();
+  static final registeredHeroId = <int>{};
 
   static String? storeUrl({
     StoreEnum? storeId,

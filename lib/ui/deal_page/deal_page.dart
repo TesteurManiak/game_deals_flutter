@@ -12,7 +12,7 @@ class DealPage extends StatefulWidget {
 
   final DealDisplayModel displayModel;
 
-  DealPage(this.displayModel);
+  const DealPage(this.displayModel);
 
   @override
   State<StatefulWidget> createState() => _DealPageState();
@@ -35,7 +35,7 @@ class _DealPageState extends State<DealPage> {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.favorite_border,
               color: MyColors.appBarActions,
             ),

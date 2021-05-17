@@ -1,5 +1,5 @@
 enum DealSort {
-  deal_rating,
+  dealRating,
   title,
   savings,
   price,

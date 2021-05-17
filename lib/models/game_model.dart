@@ -18,12 +18,12 @@ class GameModel {
   });
 
   factory GameModel.fromJson(Map<String, dynamic> json) => GameModel(
-        gameID: json['gameID'],
-        steamAppId: json['steamAppID'],
-        cheapest: double.parse(json['cheapest']),
-        cheapestDealID: json['cheapestDealID'],
-        gameExternal: json['external'],
-        internalName: json['internalName'],
-        thumb: json['thumb'],
+        gameID: json['gameID'] as String,
+        steamAppId: json['steamAppID'] as String?,
+        cheapest: double.parse(json['cheapest'] as String),
+        cheapestDealID: json['cheapestDealID'] as String,
+        gameExternal: json['external'] as String,
+        internalName: json['internalName'] as String,
+        thumb: json['thumb'] as String,
       );
 }

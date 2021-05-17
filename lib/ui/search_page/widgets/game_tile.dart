@@ -6,7 +6,7 @@ import 'package:maniak_game_deals/ui/game_page/game_page.dart';
 class GameTile extends StatelessWidget {
   final GameModel gameModel;
 
-  GameTile(this.gameModel);
+  const GameTile(this.gameModel);
 
   @override
   Widget build(BuildContext context) {
