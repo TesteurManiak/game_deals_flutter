@@ -6,7 +6,7 @@ import 'package:maniak_game_deals/ui/home_page/widgets/home_web_layout.dart';
 class HomePage extends StatelessWidget {
   static const routeName = '/home';
 
-  final _bottom = <BottomNavigationBarItem>[
+  final _bottom = const <BottomNavigationBarItem>[
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
     BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Whishlist'),
     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),

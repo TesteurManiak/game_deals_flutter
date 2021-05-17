@@ -24,8 +24,9 @@ class HomeContent extends StatelessWidget {
         StreamBuilder<List<DealModel>?>(
           stream: _dealsBloc.onRecentDealsChanged,
           builder: (_, snapshot) {
-            if (!snapshot.hasData || snapshot.data == null)
+            if (!snapshot.hasData || snapshot.data == null) {
               return const CircularProgressIndicator();
+            }
             if (snapshot.data!.isEmpty) return const Text('No deals');
             return OtherDeals(
               'Newest deals',
@@ -46,8 +47,9 @@ class HomeContent extends StatelessWidget {
         StreamBuilder<List<DealModel>?>(
           stream: _dealsBloc.onCheapestDealsChanged,
           builder: (_, snapshot) {
-            if (!snapshot.hasData || snapshot.data == null)
+            if (!snapshot.hasData || snapshot.data == null) {
               return const CircularProgressIndicator();
+            }
             if (snapshot.data!.isEmpty) return const Text('No deals');
             return OtherDeals(
               'Cheapest deals',

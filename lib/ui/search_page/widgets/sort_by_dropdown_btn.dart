@@ -14,7 +14,7 @@ class _SortByDropdownButtonState extends State<SortByDropdownButton> {
   @override
   void initState() {
     super.initState();
-    _value = DealSort.deal_rating;
+    _value = DealSort.dealRating;
   }
 
   @override
@@ -28,8 +28,8 @@ class _SortByDropdownButtonState extends State<SortByDropdownButton> {
           items: DealSort.values
               .map<DropdownMenuItem<DealSort>>(
                 (e) => DropdownMenuItem(
-                  child: Text(e.string.capitalizeFirstChar()),
                   value: e,
+                  child: Text(e.string.capitalizeFirstChar()),
                 ),
               )
               .toList(),

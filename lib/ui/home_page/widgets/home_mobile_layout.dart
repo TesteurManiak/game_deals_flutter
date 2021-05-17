@@ -6,18 +6,18 @@ import 'package:maniak_game_deals/ui/home_page/widgets/home_content.dart';
 class HomeMobileLayout extends StatelessWidget {
   final List<BottomNavigationBarItem> items;
 
-  HomeMobileLayout(this.items);
+  const HomeMobileLayout(this.items);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: AppLogo.small(),
-        title: Text('Game Store'),
+        title: const Text('Game Store'),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () => NavigatorHelper.goToSearchPage(context),
           ),
         ],

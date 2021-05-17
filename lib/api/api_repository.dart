@@ -20,7 +20,7 @@ class ApiRepository {
     List<String>? storeIds,
     int pageNumber = 0,
     int pageSize = 60,
-    DealSort sortBy = DealSort.deal_rating,
+    DealSort sortBy = DealSort.dealRating,
     bool desc = false,
     int lowerPrice = 0,
     int upperPrice = 50,

@@ -16,25 +16,25 @@ extension StringModifier on String {
       case '1':
         return StoreEnum.steam;
       case '2':
-        return StoreEnum.gamers_gate;
+        return StoreEnum.gamersGate;
       case '3':
-        return StoreEnum.green_man_gaming;
+        return StoreEnum.greenManGaming;
       case '4':
         return StoreEnum.amazon;
       case '5':
-        return StoreEnum.game_stop;
+        return StoreEnum.gameStop;
       case '6':
-        return StoreEnum.direct_2_drive;
+        return StoreEnum.direct2Drive;
       case '7':
         return StoreEnum.gog;
       case '8':
         return StoreEnum.origin;
       case '9':
-        return StoreEnum.get_games_go;
+        return StoreEnum.getGamesGo;
       case '10':
-        return StoreEnum.shiny_loot;
+        return StoreEnum.shinyloot;
       case '11':
-        return StoreEnum.humble_bundle;
+        return StoreEnum.humbleBundle;
       case '12':
         return StoreEnum.desura;
       case '13':
@@ -42,13 +42,13 @@ extension StringModifier on String {
       case '15':
         return StoreEnum.fanatical;
       case '16':
-        return StoreEnum.games_rocket;
+        return StoreEnum.gamesRocket;
       case '17':
-        return StoreEnum.games_republic;
+        return StoreEnum.gamesRepublic;
       case '18':
-        return StoreEnum.sila_games;
+        return StoreEnum.silaGames;
       case '21':
-        return StoreEnum.win_game;
+        return StoreEnum.winGame;
       case '22':
         return StoreEnum.funstock;
       case '23':
@@ -56,19 +56,19 @@ extension StringModifier on String {
       case '24':
         return StoreEnum.voidu;
       case '25':
-        return StoreEnum.epic_games;
+        return StoreEnum.epicGames;
       case '27':
         return StoreEnum.gamesplanet;
       case '28':
         return StoreEnum.gamesload;
       case '29':
-        return StoreEnum.two_game;
+        return StoreEnum.twoGames;
       case '30':
-        return StoreEnum.indie_gala;
+        return StoreEnum.indieGala;
       case '31':
-        return StoreEnum.battle_net;
+        return StoreEnum.battleNet;
       case '32':
-        return StoreEnum.all_you_play;
+        return StoreEnum.allYouPlay;
       default:
         return null;
     }

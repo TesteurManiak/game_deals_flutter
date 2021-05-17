@@ -14,7 +14,7 @@ class SeeAllPage extends StatefulWidget {
   final int scrollOffset;
   final Axis scrollDirection;
 
-  SeeAllPage(
+  const SeeAllPage(
     this.stream,
     this.title,
     this.getMoreDeals, {
@@ -85,7 +85,7 @@ class _SeeAllPageState extends State<SeeAllPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    int crossAxisCount = (size.width / 100).floor();
+    final crossAxisCount = (size.width / 100).floor();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

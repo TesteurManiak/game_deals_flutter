@@ -10,7 +10,7 @@ class GamePage extends StatefulWidget {
   final String title;
   final String gameID;
 
-  GamePage(this.title, this.gameID);
+  const GamePage(this.title, this.gameID);
 
   @override
   State<StatefulWidget> createState() => _GamePageState();
@@ -30,7 +30,7 @@ class _GamePageState extends State<GamePage> {
         stream: _gamesBloc.onGameLookUpChanged,
         builder: (_, snapshot) {
           if (!snapshot.hasData || snapshot.data == null) {
-            return Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
