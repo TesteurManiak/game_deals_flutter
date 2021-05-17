@@ -19,7 +19,7 @@ class HomeContent extends StatelessWidget {
       children: [
         if (Responsive.isDesktop(context)) SearchBar(),
         if (Responsive.isDesktop(context)) const SizedBox(height: 24),
-        RecentDealsList(),
+        const RecentDealsList(),
         const SizedBox(height: 24),
         StreamBuilder<List<DealModel>?>(
           stream: _dealsBloc.onRecentDealsChanged,

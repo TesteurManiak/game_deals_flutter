@@ -96,15 +96,17 @@ class _SeeAllPageState extends State<SeeAllPage> {
             child: StreamBuilder<List<DealModel>?>(
               stream: widget.stream,
               builder: (streamContext, snapshot) {
-                if (!snapshot.hasData || snapshot.data == null)
+                if (!snapshot.hasData || snapshot.data == null) {
                   return const CircularProgressIndicator();
-                else if (snapshot.data!.isEmpty) return const Text('No deals');
+                } else if (snapshot.data!.isEmpty) {
+                  return const Text('No deals');
+                }
                 _pageNumber = snapshot.data!.last.pageNumber;
                 return NotificationListener<ScrollNotification>(
                   onNotification: _handleScrollNotification,
                   child: StaggeredGridView.countBuilder(
                     scrollDirection: widget.scrollDirection,
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     controller: _scrollController,
                     padding: EdgeInsets.symmetric(
                       vertical: 20,
@@ -115,7 +117,8 @@ class _SeeAllPageState extends State<SeeAllPage> {
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, int index) =>
                         DealCard(snapshot.data![index]),
-                    staggeredTileBuilder: (_) => StaggeredTile.count(1, 2.2),
+                    staggeredTileBuilder: (_) =>
+                        const StaggeredTile.count(1, 2.2),
                   ),
                 );
               },

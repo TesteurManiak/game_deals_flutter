@@ -47,7 +47,7 @@ class OtherDeals extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Container(
+        SizedBox(
           height: height,
           child: ListView.separated(
             separatorBuilder: (_, __) => const SizedBox(width: 10),

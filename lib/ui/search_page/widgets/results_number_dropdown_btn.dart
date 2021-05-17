@@ -28,8 +28,8 @@ class _ResultsNumberDropdownButtonState
             (index) {
               final value = (index + 1) * 10;
               return DropdownMenuItem(
-                child: Text(value.toString()),
                 value: value,
+                child: Text(value.toString()),
               );
             },
           ),
