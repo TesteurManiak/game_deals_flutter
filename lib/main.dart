@@ -10,15 +10,17 @@ import 'package:maniak_game_deals/ui/splash_page/splash_page.dart';
 import 'package:maniak_game_deals/utils/router.dart';
 
 void main() {
-  runApp(BlocProvider(
-    child: MyApp(),
-    blocs: <BlocBase>[
-      DealsBloc(),
-      StoresBloc(),
-      GamesBloc(),
-      FiltersBloc(),
-    ],
-  ));
+  runApp(
+    BlocProvider(
+      blocs: <BlocBase>[
+        DealsBloc(),
+        StoresBloc(),
+        GamesBloc(),
+        FiltersBloc(),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

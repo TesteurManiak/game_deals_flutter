@@ -5,17 +5,16 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
   final Widget child;
   final List<T> blocs;
 
-  const BlocProvider({
+  BlocProvider({
     Key? key,
     required this.child,
     required this.blocs,
-  }) : super(key: key);
+  }) : super(key: key) {
+    if (key != null) masterKey = key as GlobalKey<State<StatefulWidget>>;
+  }
 
   @override
-  _BlocProviderState createState() {
-    if (key != null) masterKey = key as GlobalKey<State<StatefulWidget>>?;
-    return _BlocProviderState();
-  }
+  _BlocProviderState createState() => _BlocProviderState();
 
   static T of<T extends BlocBase>(BuildContext context) {
     final _BlocProviderInherited provider = context
@@ -25,12 +24,12 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
   }
 
   static T master<T extends BlocBase>() {
-    return (masterKey!.currentWidget! as BlocProvider)
+    return (masterKey.currentWidget! as BlocProvider)
         .blocs
         .firstWhere((x) => x is T) as T;
   }
 
-  static GlobalKey? masterKey;
+  static late GlobalKey masterKey;
 }
 
 class _BlocProviderState extends State<BlocProvider> {

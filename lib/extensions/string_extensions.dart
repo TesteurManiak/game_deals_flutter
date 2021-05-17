@@ -2,8 +2,9 @@ import 'package:maniak_game_deals/models/store_enum.dart';
 
 extension StringModifier on String {
   bool toBool() {
-    final val = int.tryParse(this) ?? null;
-    return val != null && val > 0 ? true : false;
+    final val = int.tryParse(this);
+    if (val != null && val > 0) return true;
+    return false;
   }
 
   bool isNumeric() => int.tryParse(this) != null;
@@ -73,12 +74,12 @@ extension StringModifier on String {
     }
   }
 
-  String singleSpace() => this.replaceAll(RegExp(' +'), ' ');
+  String singleSpace() => replaceAll(RegExp(' +'), ' ');
 
   String removeNonAlphNum({String replaceBy = ''}) =>
-      this.replaceAll(RegExp("[^a-zA-Z0-9] "), replaceBy);
+      replaceAll(RegExp("[^a-zA-Z0-9] "), replaceBy);
 
-  String removeLastChar() => this.substring(0, this.length - 1);
+  String removeLastChar() => substring(0, length - 1);
 
-  String capitalizeFirstChar() => this[0].toUpperCase() + this.substring(1);
+  String capitalizeFirstChar() => this[0].toUpperCase() + substring(1);
 }
