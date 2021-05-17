@@ -6,9 +6,9 @@ class _Info {
   _Info({required this.title, required this.steamAppID, required this.thumb});
 
   factory _Info.fromJson(Map<String, dynamic> json) => _Info(
-        title: json['title'],
-        steamAppID: json['steamAppID'],
-        thumb: json['thumb'],
+        title: json['title'] as String,
+        steamAppID: json['steamAppID'] as String?,
+        thumb: json['thumb'] as String,
       );
 }
 
@@ -20,8 +20,8 @@ class _CheapestPriceEver {
 
   factory _CheapestPriceEver.fromJson(Map<String, dynamic> json) =>
       _CheapestPriceEver(
-        price: double.parse(json['price']),
-        date: DateTime.fromMillisecondsSinceEpoch(json['date'] * 1000),
+        price: double.parse(json['price'] as String),
+        date: DateTime.fromMillisecondsSinceEpoch((json['date'] as int) * 1000),
       );
 }
 
@@ -41,11 +41,11 @@ class AvailableDeal {
   });
 
   factory AvailableDeal.fromJson(Map<String, dynamic> json) => AvailableDeal(
-        storeID: json['storeID'],
-        dealID: json['dealID'],
-        price: double.parse(json['price']),
-        retailPrice: double.parse(json['retailPrice']),
-        savings: double.parse(json['savings']),
+        storeID: json['storeID'] as String,
+        dealID: json['dealID'] as String,
+        price: double.parse(json['price'] as String),
+        retailPrice: double.parse(json['retailPrice'] as String),
+        savings: double.parse(json['savings'] as String),
       );
 }
 
@@ -62,11 +62,12 @@ class GameLookUpModel {
 
   factory GameLookUpModel.fromJson(Map<String, dynamic> json) =>
       GameLookUpModel(
-        info: _Info.fromJson(json['info']),
-        cheapestPriceEver:
-            _CheapestPriceEver.fromJson(json['cheapestPriceEver']),
+        info: _Info.fromJson(json['info'] as Map<String, dynamic>),
+        cheapestPriceEver: _CheapestPriceEver.fromJson(
+            json['cheapestPriceEver'] as Map<String, dynamic>),
         deals: (json['deals'] as Iterable)
-            .map<AvailableDeal>((e) => AvailableDeal.fromJson(e))
+            .map<AvailableDeal>(
+                (e) => AvailableDeal.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 }

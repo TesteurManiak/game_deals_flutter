@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/models/deal_display_model.dart';
+import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/ui/deal_page/deal_page.dart';
 import 'package:maniak_game_deals/ui/game_page/game_page.dart';
 import 'package:maniak_game_deals/ui/home_page/home_page.dart';
@@ -15,17 +16,27 @@ class MyRouter {
       case HomePage.routeName:
         return MaterialPageRoute(builder: (_) => HomePage());
       case SeeAllPage.routeName:
-        final args = settings.arguments as List;
+        final args = settings.arguments! as List;
         return MaterialPageRoute(
-            builder: (_) => SeeAllPage(args[0], args[1], args[2]));
+          builder: (_) => SeeAllPage(
+            args[0] as Stream<List<DealModel>?>,
+            args[1] as String,
+            args[2] as Function(int),
+          ),
+        );
       case DealPage.routeName:
         return MaterialPageRoute(
-            builder: (_) => DealPage(settings.arguments as DealDisplayModel));
+            builder: (_) => DealPage(settings.arguments! as DealDisplayModel));
       case SearchPage.routeName:
         return MaterialPageRoute(builder: (_) => SearchPage());
       case GamePage.routeName:
-        final args = settings.arguments as List;
-        return MaterialPageRoute(builder: (_) => GamePage(args[0], args[1]));
+        final args = settings.arguments! as List;
+        return MaterialPageRoute(
+          builder: (_) => GamePage(
+            args[0] as String,
+            args[1] as String,
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
+import 'package:maniak_game_deals/bloc/filters_bloc.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/filters_actions_enum.dart';
+import 'package:maniak_game_deals/models/filters_response.dart';
 import 'package:maniak_game_deals/models/game_model.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/filters_dialog.dart';
@@ -18,19 +20,20 @@ class _SearchPageState extends State<SearchPage> {
   final _controller = TextEditingController();
 
   late final _gamesBloc = BlocProvider.of<GamesBloc>(context);
+  late final _filtersBloc = BlocProvider.of<FiltersBloc>(context);
 
   void _openFiltersDialog() {
-    showDialog<FiltersActions>(
+    showDialog<FiltersResponse>(
         context: context, builder: (_) => FiltersDialog()).then((value) {
-      switch (value) {
+      if (value == null) return;
+      switch (value.filtersActions) {
         case FiltersActions.filters:
-          print('Update filters');
+          _filtersBloc.updateFilters(value.filtersModel!);
           break;
         case FiltersActions.reset:
-          print('Reset filters');
+          _filtersBloc.resetFilters();
           break;
         default:
-          print('Dont update filters');
           break;
       }
     });
@@ -52,7 +55,7 @@ class _SearchPageState extends State<SearchPage> {
           decoration: InputDecoration(
             hintText: 'Game name or Steam ID',
             suffixIcon: IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               onPressed: () => _gamesBloc.fetchGames(_controller.text),
             ),
           ),
@@ -69,10 +72,10 @@ class _SearchPageState extends State<SearchPage> {
         stream: _gamesBloc.onGamesChanged,
         builder: (streamContext, snapshot) {
           if (!snapshot.hasData || snapshot.data == null) {
-            return Center(child: const CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (snapshot.data!.isEmpty) {
-            return Center(child: const Text('No game to display'));
+            return const Center(child: Text('No game to display'));
           }
           return ListView.separated(
             padding: EdgeInsets.symmetric(

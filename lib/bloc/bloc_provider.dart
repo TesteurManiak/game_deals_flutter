@@ -5,7 +5,7 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
   final Widget child;
   final List<T> blocs;
 
-  BlocProvider({
+  const BlocProvider({
     Key? key,
     required this.child,
     required this.blocs,
@@ -18,15 +18,14 @@ class BlocProvider<T extends BlocBase> extends StatefulWidget {
   }
 
   static T of<T extends BlocBase>(BuildContext context) {
-    _BlocProviderInherited? provider = context
-        .getElementForInheritedWidgetOfExactType<_BlocProviderInherited>()
-        ?.widget as _BlocProviderInherited?;
-    return provider?.blocs.firstWhere((x) => x is T) as T;
+    final _BlocProviderInherited provider = context
+        .getElementForInheritedWidgetOfExactType<_BlocProviderInherited>()!
+        .widget as _BlocProviderInherited;
+    return provider.blocs.firstWhere((x) => x is T) as T;
   }
 
   static T master<T extends BlocBase>() {
-    assert(masterKey != null);
-    return (masterKey!.currentWidget as BlocProvider)
+    return (masterKey!.currentWidget! as BlocProvider)
         .blocs
         .firstWhere((x) => x is T) as T;
   }
@@ -38,12 +37,16 @@ class _BlocProviderState extends State<BlocProvider> {
   @override
   void initState() {
     super.initState();
-    widget.blocs.forEach((bloc) => bloc.initState());
+    for (final bloc in widget.blocs) {
+      bloc.initState();
+    }
   }
 
   @override
   void dispose() {
-    widget.blocs.forEach((bloc) => bloc.dispose());
+    for (final bloc in widget.blocs) {
+      bloc.dispose();
+    }
     super.dispose();
   }
 
@@ -59,7 +62,8 @@ class _BlocProviderState extends State<BlocProvider> {
 class _BlocProviderInherited extends InheritedWidget {
   final List<BlocBase> blocs;
 
-  _BlocProviderInherited({Key? key, required Widget child, required this.blocs})
+  const _BlocProviderInherited(
+      {Key? key, required Widget child, required this.blocs})
       : super(key: key, child: child);
 
   @override
