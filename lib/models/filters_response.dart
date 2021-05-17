@@ -5,5 +5,5 @@ class FiltersResponse {
   final FiltersActions filtersActions;
   final FiltersModel? filtersModel;
 
-  FiltersResponse({required this.filtersActions, required this.filtersModel});
+  FiltersResponse({required this.filtersActions, this.filtersModel});
 }

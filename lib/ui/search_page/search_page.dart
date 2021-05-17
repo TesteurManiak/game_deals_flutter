@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
+import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/bloc/filters_bloc.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
 import 'package:maniak_game_deals/models/filters_actions_enum.dart';
@@ -20,6 +21,7 @@ class _SearchPageState extends State<SearchPage> {
   final _controller = TextEditingController();
 
   late final _gamesBloc = BlocProvider.of<GamesBloc>(context);
+  late final _dealsBloc = BlocProvider.of<DealsBloc>(context);
   late final _filtersBloc = BlocProvider.of<FiltersBloc>(context);
 
   void _openFiltersDialog() {
@@ -29,9 +31,13 @@ class _SearchPageState extends State<SearchPage> {
       switch (value.filtersActions) {
         case FiltersActions.filters:
           _filtersBloc.updateFilters(value.filtersModel!);
+          _dealsBloc
+              .fetchFilteredDeals(context, _controller.text)
+              .then((value) => print(value.length));
           break;
         case FiltersActions.reset:
           _filtersBloc.resetFilters();
+          _gamesBloc.fetchGames(_controller.text);
           break;
         default:
           break;
