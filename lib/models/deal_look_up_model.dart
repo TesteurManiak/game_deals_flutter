@@ -34,23 +34,24 @@ class _GameInfo {
   });
 
   factory _GameInfo.fromJson(Map<String, dynamic> json) => _GameInfo(
-        storeID: json['storeID'],
-        gameID: json['gameID'],
-        name: json['name'],
-        steamAppID: json['steamAppID'],
-        salePrice: double.parse(json['salePrice']),
-        retailPrice: double.parse(json['retailPrice']),
-        steamRatingText: json['steamRatingText'],
-        steamRatingPercent: json['steamRatingPercent'],
-        steamRatingCount: json['steamRatingCount'],
-        metacriticScore: json['metacriticScore'],
-        metacriticLink: json['metacriticLink'],
+        storeID: json['storeID'] as String,
+        gameID: json['gameID'] as String,
+        name: json['name'] as String,
+        steamAppID: json['steamAppID'] as String?,
+        salePrice: double.parse(json['salePrice'] as String),
+        retailPrice: double.parse(json['retailPrice'] as String),
+        steamRatingText: json['steamRatingText'] as String?,
+        steamRatingPercent: json['steamRatingPercent'] as String?,
+        steamRatingCount: json['steamRatingCount'] as String?,
+        metacriticScore: json['metacriticScore'] as String?,
+        metacriticLink: json['metacriticLink'] as String?,
         releaseDate: json['releaseDate'] != null
-            ? DateTime.fromMillisecondsSinceEpoch(json['releaseDate'] * 1000)
+            ? DateTime.fromMillisecondsSinceEpoch(
+                (json['releaseDate'] as int) * 1000)
             : null,
-        publisher: json['publisher'],
-        steamworks: json['steamworks'],
-        thumb: json['thumb'],
+        publisher: json['publisher'] as String,
+        steamworks: json['steamworks'] as String?,
+        thumb: json['thumb'] as String,
       );
 }
 
@@ -68,10 +69,10 @@ class CheaperStore {
   });
 
   factory CheaperStore.fromJson(Map<String, dynamic> json) => CheaperStore(
-        dealID: json['dealID'],
-        storeID: json['storeID'],
-        salePrice: double.parse(json['salePrice']),
-        retailPrice: double.parse(json['retailPrice']),
+        dealID: json['dealID'] as String,
+        storeID: json['storeID'] as String,
+        salePrice: double.parse(json['salePrice'] as String),
+        retailPrice: double.parse(json['retailPrice'] as String),
       );
 }
 
@@ -82,8 +83,10 @@ class _CheapestPrice {
   _CheapestPrice({required this.price, required this.date});
 
   factory _CheapestPrice.fromJson(Map<String, dynamic> json) => _CheapestPrice(
-        price: json['price'] != null ? double.parse(json['price']) : null,
-        date: DateTime.fromMillisecondsSinceEpoch(json['date'] * 1000),
+        price: json['price'] != null
+            ? double.parse(json['price'] as String)
+            : null,
+        date: DateTime.fromMillisecondsSinceEpoch((json['date'] as int) * 1000),
       );
 }
 
@@ -100,10 +103,12 @@ class DealLookUpModel {
 
   factory DealLookUpModel.fromJson(Map<String, dynamic> json) =>
       DealLookUpModel(
-        gameInfo: _GameInfo.fromJson(json['gameInfo']),
+        gameInfo: _GameInfo.fromJson(json['gameInfo'] as Map<String, dynamic>),
         cheaperStores: (json['cheaperStores'] as Iterable)
-            .map<CheaperStore>((e) => CheaperStore.fromJson(e))
+            .map<CheaperStore>(
+                (e) => CheaperStore.fromJson(e as Map<String, dynamic>))
             .toList(),
-        cheapestPrice: _CheapestPrice.fromJson(json['cheapestPrice']),
+        cheapestPrice: _CheapestPrice.fromJson(
+            json['cheapestPrice'] as Map<String, dynamic>),
       );
 }

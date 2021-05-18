@@ -12,9 +12,9 @@ class _StoreImages {
   _StoreImages({required this.banner, required this.logo, required this.icon});
 
   factory _StoreImages.fromJson(Map<String, dynamic> json) => _StoreImages(
-        banner: json['banner'],
-        logo: json['logo'],
-        icon: json['icon'],
+        banner: json['banner'] as String?,
+        logo: json['logo'] as String?,
+        icon: json['icon'] as String?,
       );
 }
 
@@ -34,9 +34,9 @@ class StoreModel {
   }) : storeEnum = storeID.toStoreEnum();
 
   factory StoreModel.fromJson(Map<String, dynamic> json) => StoreModel(
-        storeID: json['storeID'],
-        storeName: json['storeName'],
+        storeID: json['storeID'] as String,
+        storeName: json['storeName'] as String,
         isActive: (json['isActive'] as int).toBool(),
-        images: _StoreImages.fromJson(json['images']),
+        images: _StoreImages.fromJson(json['images'] as Map<String, dynamic>),
       );
 }

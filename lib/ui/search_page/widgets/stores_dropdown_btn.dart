@@ -4,13 +4,16 @@ import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/models/store_model.dart';
 
 class StoresDropDownButton extends StatefulWidget {
+  final ValueNotifier<StoreModel?> controller;
+
+  const StoresDropDownButton(this.controller);
+
   @override
   State<StatefulWidget> createState() => _StoresDropDownButtonState();
 }
 
 class _StoresDropDownButtonState extends State<StoresDropDownButton> {
   late final _storesBloc = BlocProvider.of<StoresBloc>(context);
-  StoreModel? _value;
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +22,16 @@ class _StoresDropDownButtonState extends State<StoresDropDownButton> {
         const Text('Store:'),
         const SizedBox(width: 8),
         DropdownButton<StoreModel>(
-          value: _value,
+          value: widget.controller.value,
           items: _storesBloc.stores!
               .map<DropdownMenuItem<StoreModel>>(
                 (e) => DropdownMenuItem(
-                  child: Text(e.storeName),
                   value: e,
+                  child: Text(e.storeName),
                 ),
               )
               .toList(),
-          onChanged: (value) => setState(() => _value = value),
+          onChanged: (value) => setState(() => widget.controller.value = value),
         ),
       ],
     );

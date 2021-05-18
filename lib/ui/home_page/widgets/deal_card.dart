@@ -11,7 +11,7 @@ class DealCard extends StatelessWidget {
   final DealModel deal;
   final double width;
 
-  DealCard(this.deal, {this.width = 100});
+  const DealCard(this.deal, {this.width = 100});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class DealCard extends StatelessWidget {
           DealPage.routeName,
           arguments: DealDisplayModel.fromDealModel(deal),
         ),
-        child: Container(
+        child: SizedBox(
           width: width,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

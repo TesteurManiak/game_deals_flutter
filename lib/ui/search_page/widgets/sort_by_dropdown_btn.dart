@@ -4,19 +4,15 @@ import 'package:maniak_game_deals/extensions/extensions.dart'
     show DealSortModifier, StringModifier;
 
 class SortByDropdownButton extends StatefulWidget {
+  final ValueNotifier<DealSort> controller;
+
+  const SortByDropdownButton(this.controller);
+
   @override
   State<StatefulWidget> createState() => _SortByDropdownButtonState();
 }
 
 class _SortByDropdownButtonState extends State<SortByDropdownButton> {
-  DealSort? _value;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = DealSort.deal_rating;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,16 +20,17 @@ class _SortByDropdownButtonState extends State<SortByDropdownButton> {
         const Text('Sort by:'),
         const SizedBox(width: 8),
         DropdownButton<DealSort>(
-          value: _value,
+          value: widget.controller.value,
           items: DealSort.values
               .map<DropdownMenuItem<DealSort>>(
                 (e) => DropdownMenuItem(
-                  child: Text(e.string.capitalizeFirstChar()),
                   value: e,
+                  child: Text(e.string.capitalizeFirstChar()),
                 ),
               )
               .toList(),
-          onChanged: (value) => setState(() => _value = value),
+          onChanged: (value) =>
+              setState(() => widget.controller.value = value!),
         ),
       ],
     );

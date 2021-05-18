@@ -40,23 +40,21 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         fit: StackFit.expand,
         children: [
           Container(
-            decoration: BoxDecoration(color: MyColors.progressIndicator),
+            decoration: const BoxDecoration(color: MyColors.progressIndicator),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Expanded(
-                  child: const AppLogo(),
+                const Expanded(
                   flex: 2,
+                  child: AppLogo(),
                 ),
                 Expanded(
-                  flex: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CircularProgressIndicator(
+                    children: const [
+                      CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ),

@@ -17,7 +17,7 @@ class BuyBtn extends StatelessWidget {
   final String? steamAppID;
   final bool enabled;
 
-  BuyBtn({
+  const BuyBtn({
     required this.salePrice,
     required this.storeID,
     required this.dealID,
@@ -25,7 +25,7 @@ class BuyBtn extends StatelessWidget {
     this.enabled = true,
   });
 
-  factory BuyBtn.disabled() => BuyBtn(
+  factory BuyBtn.disabled() => const BuyBtn(
         salePrice: 0,
         storeID: '',
         dealID: '',
@@ -48,15 +48,13 @@ class BuyBtn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               const SizedBox(width: 28),
-              enabled
-                  ? Text(
-                      '\$${salePrice.toStringAsFixed(2)}',
-                      style: TextStyles.dealPagePrice,
-                    )
-                  : Container(),
+              if (enabled)
+                Text(
+                  '\$${salePrice.toStringAsFixed(2)}',
+                  style: TextStyles.dealPagePrice,
+                ),
               const SizedBox(width: 28),
               ElevatedGradientButton(
-                child: const Text('Buy it Online', style: TextStyles.buyBtn),
                 gradient:
                     enabled ? MyGradients.buyBtn : MyGradients.disabledBtn,
                 onPressed: enabled
@@ -70,7 +68,6 @@ class BuyBtn extends StatelessWidget {
                             dealID: dealID,
                             steamAppID: steamAppID,
                           );
-                          print(url);
                           if (url != null && await canLaunch(url)) {
                             await launch(url);
                           }
@@ -79,6 +76,7 @@ class BuyBtn extends StatelessWidget {
                     : null,
                 borderRadius: BorderRadius.circular(100),
                 shadowColor: MyColors.buyBtnShadow.withOpacity(0.3),
+                child: const Text('Buy it Online', style: TextStyles.buyBtn),
               ),
             ],
           ),

@@ -7,10 +7,6 @@ import 'package:maniak_game_deals/extensions/extensions.dart'
     show StringModifier;
 
 class GamesBloc extends BlocBase {
-  final _gamesController = BehaviorSubject<List<GameModel>?>.seeded([]);
-  Stream<List<GameModel>?> get onGamesChanged => _gamesController.stream;
-  List<GameModel>? get games => _gamesController.value;
-
   final _lookedUpGameController =
       BehaviorSubject<GameLookUpModel?>.seeded(null);
   Stream<GameLookUpModel?> get onGameLookUpChanged =>
@@ -22,12 +18,10 @@ class GamesBloc extends BlocBase {
 
   @override
   void dispose() {
-    _gamesController.close();
     _lookedUpGameController.close();
   }
 
-  Future<void> fetchGames(String title) async {
-    _gamesController.sink.add(null);
+  Future<List<GameModel>> fetchGames(String title) async {
     late final List<GameModel> fetchedGames;
     if (title.isNumeric()) {
       final steamAppID = int.parse(title);
@@ -35,7 +29,7 @@ class GamesBloc extends BlocBase {
     } else {
       fetchedGames = await apiRepository.getGames(title: title);
     }
-    _gamesController.sink.add(fetchedGames);
+    return fetchedGames;
   }
 
   Future<void> gameLookup(String gameID) async {

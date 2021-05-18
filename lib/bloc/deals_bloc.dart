@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/api/api_repository.dart';
 import 'package:maniak_game_deals/bloc/bloc.dart';
+import 'package:maniak_game_deals/bloc/bloc_provider.dart';
+import 'package:maniak_game_deals/bloc/filters_bloc.dart';
 import 'package:maniak_game_deals/models/deal_look_up_model.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
@@ -78,6 +81,20 @@ class DealsBloc extends BlocBase {
     );
     newDeals.addAll(fetchedDeals);
     _cheapestDealsController.sink.add(newDeals);
+  }
+
+  Future<List<DealModel>> fetchFilteredDeals(
+      BuildContext context, String title) async {
+    final filters = BlocProvider.of<FiltersBloc>(context).filters;
+    assert(filters != null);
+    final fetchedDeals = await apiRepository.getDeals(
+      desc: filters!.desc,
+      pageSize: filters.results,
+      sortBy: filters.sortBy,
+      storeIds: filters.store != null ? [filters.store!.storeID] : null,
+      title: title,
+    );
+    return fetchedDeals;
   }
 
   Future<DealLookUpModel> lookUpDeal(String dealID) async {

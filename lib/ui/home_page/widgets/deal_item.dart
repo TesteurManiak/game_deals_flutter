@@ -12,7 +12,7 @@ class DealItem extends StatelessWidget {
   final DealModel deal;
   final double height;
 
-  DealItem(this.deal, this.height);
+  const DealItem(this.deal, this.height);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class DealItem extends StatelessWidget {
             DealPage.routeName,
             arguments: DealDisplayModel.fromDealModel(deal),
           ),
-          child: Container(
+          child: SizedBox(
             width: width,
             height: height,
             child: Stack(
@@ -39,7 +39,7 @@ class DealItem extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: deal.thumb,
                     placeholder: (_, __) =>
-                        Center(child: const CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator()),
                     height: height,
                     width: width,
                     errorWidget: (_, url, e) {
@@ -47,7 +47,7 @@ class DealItem extends StatelessWidget {
                         height: height,
                         width: width,
                         color: Colors.black.withOpacity(0.3),
-                        child: Icon(Icons.error, color: Colors.white),
+                        child: const Icon(Icons.error, color: Colors.white),
                       );
                     },
                     fit: BoxFit.cover,
@@ -61,7 +61,7 @@ class DealItem extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.2),
-                      borderRadius: BorderRadius.vertical(
+                      borderRadius: const BorderRadius.vertical(
                         bottom: Radius.circular(8),
                       ),
                     ),
@@ -73,13 +73,13 @@ class DealItem extends StatelessWidget {
                   left: 0,
                   child: Container(
                     padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: MyColors.progressIndicator,
                       borderRadius:
                           BorderRadius.horizontal(right: Radius.circular(10)),
                     ),
                     child: Text(
-                      '-${deal.percentageOff}',
+                      deal.percentageOff,
                       style: TextStyles.dealOverlay,
                     ),
                   ),

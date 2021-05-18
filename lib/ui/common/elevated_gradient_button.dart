@@ -7,7 +7,7 @@ class ElevatedGradientButton extends StatelessWidget {
   final Color? shadowColor;
   final BorderRadius? borderRadius;
 
-  ElevatedGradientButton({
+  const ElevatedGradientButton({
     Key? key,
     required this.child,
     required this.gradient,
@@ -26,7 +26,7 @@ class ElevatedGradientButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: _shadowColor,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
             blurRadius: 10,
           ),
         ],

@@ -1,3 +1,6 @@
 extension IntModifier on int {
-  bool toBool() => this > 0 ? true : false;
+  bool toBool() {
+    if (this > 0) return true;
+    return false;
+  }
 }

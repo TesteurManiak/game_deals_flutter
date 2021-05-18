@@ -11,7 +11,12 @@ class OtherDeals extends StatelessWidget {
   final String title;
   final VoidCallback seeAllCallback;
 
-  OtherDeals(this.title, this.deals, this.seeAllCallback, {this.height = 188});
+  const OtherDeals(
+    this.title,
+    this.deals,
+    this.seeAllCallback, {
+    this.height = 188,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +47,7 @@ class OtherDeals extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Container(
+        SizedBox(
           height: height,
           child: ListView.separated(
             separatorBuilder: (_, __) => const SizedBox(width: 10),

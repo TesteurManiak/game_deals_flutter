@@ -12,7 +12,7 @@ class GameHeader extends StatelessWidget {
   final String title;
   final double? dealRating;
 
-  GameHeader(
+  const GameHeader(
     this.thumb,
     this.uid,
     this.storeID,
@@ -25,17 +25,17 @@ class GameHeader extends StatelessWidget {
     return Row(
       children: [
         Container(
-          child: DealIcon(thumb, uid: uid),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                offset: Offset(0, 2),
+                offset: const Offset(0, 2),
                 color: MyColors.shadow.withOpacity(0.5),
                 blurRadius: 4,
               )
             ],
           ),
+          child: DealIcon(thumb, uid: uid),
         ),
         const SizedBox(width: 12),
         Expanded(
@@ -65,7 +65,8 @@ class GameHeader extends StatelessWidget {
                         text: dealRating!.toStringAsFixed(1),
                         style: TextStyles.dealRating,
                       ),
-                      TextSpan(text: '/10', style: TextStyles.dealRating2),
+                      const TextSpan(
+                          text: '/10', style: TextStyles.dealRating2),
                     ],
                   ),
                 ),

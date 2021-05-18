@@ -38,31 +38,31 @@ No release planned. You will need to build the iPA yourself.
 * [x] ![steam](assets/img/stores/icons/0.png) Steam
 * [x] ![gamers gate](assets/img/stores/icons/1.png) Gamers Gate
 * [x] ![green man gaming](assets/img/stores/icons/2.png) Green Man Gaming
-* [ ] ![amazon](assets/img/stores/icons/3.png) Amazon
-* [ ] ![gamestop](assets/img/stores/icons/4.png) GameStop
-* [ ] ![direct2drive](assets/img/stores/icons/5.png) Direct2Drive
+* [x] ![amazon](assets/img/stores/icons/3.png) Amazon
+* [x] ![gamestop](assets/img/stores/icons/4.png) GameStop
+* [x] ![direct2drive](assets/img/stores/icons/5.png) Direct2Drive
 * [x] ![gog](assets/img/stores/icons/6.png) GoG
 * [x] ![origin](assets/img/stores/icons/7.png) Origin
-* [ ] ![getgamesgo](assets/img/stores/icons/8.png) GetGamesGo
-* [ ] ![shiny loot](assets/img/stores/icons/9.png) Shiny Loot
+* [x] ![getgamesgo](assets/img/stores/icons/8.png) GetGamesGo
+* [x] ![shiny loot](assets/img/stores/icons/9.png) Shiny Loot
 * [x] ![humble bundle store](assets/img/stores/icons/10.png) Humble Bundle Store
-* [ ] ![desura](assets/img/stores/icons/11.png) Desura
-* [ ] ![uplay](assets/img/stores/icons/12.png) Uplay
+* [x] ![desura](assets/img/stores/icons/11.png) Desura
+* [x] ![uplay](assets/img/stores/icons/12.png) Uplay
 * [x] ![fanatical](assets/img/stores/icons/14.png) Fanatical
-* [ ] ![gamesrocket](assets/img/stores/icons/15.png) GamesRocket
-* [ ] ![games republic](assets/img/stores/icons/16.png) Games Republic
-* [ ] ![sila games](assets/img/stores/icons/17.png) Sila Games Store
+* [x] ![gamesrocket](assets/img/stores/icons/15.png) GamesRocket
+* [x] ![games republic](assets/img/stores/icons/16.png) Games Republic
+* [x] ![sila games](assets/img/stores/icons/17.png) Sila Games Store
 * [x] ![wingamestore](assets/img/stores/icons/20.png) WinGameStore
-* [ ] ![funstock](assets/img/stores/icons/21.png) Funstock
+* [x] ![funstock](assets/img/stores/icons/21.png) Funstock
 * [x] ![gamebillet](assets/img/stores/icons/22.png) Gamebillet
-* [ ] ![voidu](assets/img/stores/icons/23.png) Voidu
+* [x] ![voidu](assets/img/stores/icons/23.png) Voidu
 * [x] ![epic games store](assets/img/stores/icons/24.png) Epic Games Store
 * [x] ![gamesplanet](assets/img/stores/icons/26.png) Gamesplanet
-* [ ] ![gamesload](assets/img/stores/icons/27.png) Gamesload
-* [ ] ![2games](assets/img/stores/icons/28.png) 2Games
+* [x] ![gamesload](assets/img/stores/icons/27.png) Gamesload
+* [x] ![2games](assets/img/stores/icons/28.png) 2Games
 * [x] ![indie gala](assets/img/stores/icons/29.png) Indie Gala
 * [x] ![battle.net](assets/img/stores/icons/30.png) Battle.Net
-* [ ] ![all you play](assets/img/stores/icons/21.png) All You Play
+* [x] ![all you play](assets/img/stores/icons/21.png) All You Play
 
 ### Features
 

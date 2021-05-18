@@ -9,7 +9,7 @@ class RecentDealsList extends StatefulWidget {
   final double height;
   final double width;
 
-  RecentDealsList({this.height = 212.0, this.width = double.maxFinite});
+  const RecentDealsList({this.height = 212.0, this.width = double.maxFinite});
 
   @override
   State<StatefulWidget> createState() => _RecentDealsListState();
@@ -20,14 +20,15 @@ class _RecentDealsListState extends State<RecentDealsList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: widget.width,
       height: widget.height,
       child: StreamBuilder<List<DealModel>?>(
         stream: _dealsBloc.onBestDealsChanged,
         builder: (context, snapshot) {
-          if (!snapshot.hasData || snapshot.data == null)
+          if (!snapshot.hasData || snapshot.data == null) {
             return const CircularProgressIndicator();
+          }
           if (snapshot.data!.isEmpty) return const Text('No deals');
           return CarouselSlider(
             options: CarouselOptions(
