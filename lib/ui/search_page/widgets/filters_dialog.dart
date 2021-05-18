@@ -6,6 +6,7 @@ import 'package:maniak_game_deals/models/filters_model.dart';
 import 'package:maniak_game_deals/models/filters_response.dart';
 import 'package:maniak_game_deals/models/sort_enum.dart';
 import 'package:maniak_game_deals/models/store_model.dart';
+import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/descendant.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/results_number_dropdown_btn.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/sort_by_dropdown_btn.dart';
@@ -74,7 +75,7 @@ class _FiltersDialogState extends State<FiltersDialog> {
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.refresh),
+          icon: const Icon(Icons.refresh, color: MyColors.textButton),
           onPressed: () => Navigator.pop<FiltersResponse>(
             context,
             FiltersResponse(filtersActions: FiltersActions.reset),

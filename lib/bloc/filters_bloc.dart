@@ -17,12 +17,16 @@ class FiltersBloc extends BlocBase {
   @override
   void dispose() {
     _filtersController.close();
+    _searchResultsController.close();
   }
 
   @override
   void initState() {}
 
-  void resetFilters() => _filtersController.sink.add(null);
+  void resetFilters({bool resetSearchResults = false}) {
+    _filtersController.sink.add(null);
+    if (resetSearchResults) _searchResultsController.sink.add([]);
+  }
 
   void updateFilters(FiltersModel newFilters) =>
       _filtersController.sink.add(newFilters);

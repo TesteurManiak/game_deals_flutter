@@ -54,6 +54,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void dispose() {
     _controller.dispose();
+    _filtersBloc.resetFilters(resetSearchResults: true);
     super.dispose();
   }
 
