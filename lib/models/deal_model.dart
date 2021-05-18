@@ -2,9 +2,10 @@ import 'dart:math';
 
 import 'package:maniak_game_deals/extensions/extensions.dart'
     show StringModifier;
+import 'package:maniak_game_deals/models/search_result.dart';
 import 'package:maniak_game_deals/utils/consts.dart';
 
-class DealModel {
+class DealModel extends SearchResult {
   static const internalNameEntry = 'internalName';
   static const titleEntry = 'title';
   static const metacriticLinkEntry = 'metacriticLink';
@@ -26,11 +27,9 @@ class DealModel {
   static const thumbEntry = 'thumb';
 
   final String internalName;
-  final String title;
   final String? metacriticLink;
   final String dealID;
   final String storeID;
-  final String gameID;
   final double salePrice;
   final double normalPrice;
   final bool isOnSale;
@@ -43,10 +42,21 @@ class DealModel {
   final DateTime? releaseDate;
   final DateTime? lastChange;
   final double? dealRating;
-  final String thumb;
   final int pageNumber;
 
   late int _id;
+
+  @override
+  final String title;
+
+  @override
+  final String gameID;
+
+  @override
+  final String thumb;
+
+  @override
+  double get price => salePrice;
 
   String get percentageOff => '${savings.round()}%';
   String get uid => '$dealID-$internalName-$title-$_id';

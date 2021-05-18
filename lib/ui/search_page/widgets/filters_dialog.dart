@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:maniak_game_deals/bloc/bloc_provider.dart';
+import 'package:maniak_game_deals/bloc/filters_bloc.dart';
 import 'package:maniak_game_deals/models/filters_actions_enum.dart';
 import 'package:maniak_game_deals/models/filters_model.dart';
 import 'package:maniak_game_deals/models/filters_response.dart';
@@ -15,8 +17,14 @@ class FiltersDialog extends StatefulWidget {
 }
 
 class _FiltersDialogState extends State<FiltersDialog> {
+  late final _filtersBloc = BlocProvider.of<FiltersBloc>(context);
+
   final _formKey = GlobalKey<FormState>();
-  final _stores = ValueNotifier<StoreModel?>(null);
+
+  late final ValueNotifier<StoreModel?> _stores;
+  late final ValueNotifier<bool> _desc;
+  late final ValueNotifier<DealSort> _sortBy;
+  late final ValueNotifier<int> _results;
 
   void _filters() {
     final formState = _formKey.currentState;
@@ -27,13 +35,23 @@ class _FiltersDialogState extends State<FiltersDialog> {
           filtersActions: FiltersActions.filters,
           filtersModel: FiltersModel(
             store: _stores.value,
-            desc: false,
-            sortBy: DealSort.dealRating,
-            results: 60,
+            desc: _desc.value,
+            sortBy: _sortBy.value,
+            results: _results.value,
           ),
         ),
       );
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _stores = ValueNotifier<StoreModel?>(_filtersBloc.filters?.store);
+    _desc = ValueNotifier<bool>(_filtersBloc.filters?.desc ?? false);
+    _sortBy = ValueNotifier<DealSort>(
+        _filtersBloc.filters?.sortBy ?? DealSort.dealRating);
+    _results = ValueNotifier<int>(_filtersBloc.filters?.results ?? 60);
   }
 
   @override
@@ -47,8 +65,8 @@ class _FiltersDialogState extends State<FiltersDialog> {
             mainAxisSize: MainAxisSize.min,
             children: [
               StoresDropDownButton(_stores),
-              ResultsNumberDropdownButton(),
-              SortByDropdownButton(),
+              ResultsNumberDropdownButton(_results),
+              SortByDropdownButton(_sortBy),
               Descendant(),
             ],
           ),

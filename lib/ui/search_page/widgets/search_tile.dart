@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:maniak_game_deals/models/game_model.dart';
+import 'package:maniak_game_deals/models/search_result.dart';
 import 'package:maniak_game_deals/ui/common/deal_icon.dart';
 import 'package:maniak_game_deals/ui/game_page/game_page.dart';
 
-class GameTile extends StatelessWidget {
-  final GameModel gameModel;
+class SearchTile extends StatelessWidget {
+  final SearchResult gameModel;
 
-  const GameTile(this.gameModel);
+  const SearchTile(this.gameModel);
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +17,14 @@ class GameTile extends StatelessWidget {
         width: 50,
         radius: 10,
       ),
-      title: Text(gameModel.gameExternal),
+      title: Text(gameModel.title),
       trailing: Text(
-        '\$${gameModel.cheapest.toStringAsFixed(2)}',
+        '\$${gameModel.price.toStringAsFixed(2)}',
       ),
       onTap: () => Navigator.pushNamed(
         context,
         GamePage.routeName,
-        arguments: [gameModel.gameExternal, gameModel.gameID],
+        arguments: [gameModel.title, gameModel.gameID],
       ),
     );
   }

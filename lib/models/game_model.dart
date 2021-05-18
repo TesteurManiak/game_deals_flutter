@@ -1,11 +1,23 @@
-class GameModel {
-  final String gameID;
+import 'package:maniak_game_deals/models/search_result.dart';
+
+class GameModel extends SearchResult {
   final String? steamAppId;
   final double cheapest;
   final String cheapestDealID;
   final String gameExternal;
   final String internalName;
+
+  @override
+  final String gameID;
+
+  @override
   final String thumb;
+
+  @override
+  String get title => gameExternal;
+
+  @override
+  double get price => cheapest;
 
   GameModel({
     required this.gameID,
