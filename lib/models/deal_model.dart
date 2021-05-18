@@ -58,7 +58,7 @@ class DealModel extends SearchResult {
   @override
   double get price => salePrice;
 
-  String get percentageOff => '${savings.round()}%';
+  String get percentageOff => '-${savings.round()}%';
   String get uid => '$dealID-$internalName-$title-$_id';
 
   DealModel({

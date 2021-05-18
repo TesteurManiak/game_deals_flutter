@@ -34,4 +34,12 @@ class TextStyles {
     color: MyColors.dealPagePrice,
     fontSize: 16,
   );
+  static const availableDealPrice = TextStyle(
+    color: Colors.black,
+    fontSize: 16,
+  );
+  static const availableDealPercentage = TextStyle(
+    fontSize: 12,
+    color: MyColors.salePrice,
+  );
 }

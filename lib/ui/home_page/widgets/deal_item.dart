@@ -79,7 +79,7 @@ class DealItem extends StatelessWidget {
                           BorderRadius.horizontal(right: Radius.circular(10)),
                     ),
                     child: Text(
-                      '-${deal.percentageOff}',
+                      deal.percentageOff,
                       style: TextStyles.dealOverlay,
                     ),
                   ),

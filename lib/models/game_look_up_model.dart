@@ -32,6 +32,8 @@ class AvailableDeal {
   final double retailPrice;
   final double savings;
 
+  String get percentageOff => '-${savings.round()}%';
+
   AvailableDeal({
     required this.storeID,
     required this.dealID,

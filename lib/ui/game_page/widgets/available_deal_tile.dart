@@ -5,6 +5,7 @@ import 'package:maniak_game_deals/models/deal_display_model.dart';
 import 'package:maniak_game_deals/models/game_look_up_model.dart';
 import 'package:maniak_game_deals/extensions/extensions.dart'
     show IterableModifier;
+import 'package:maniak_game_deals/style/text_styles.dart';
 import 'package:maniak_game_deals/ui/deal_page/deal_page.dart';
 
 class AvailableDealTile extends StatelessWidget {
@@ -34,7 +35,22 @@ class AvailableDealTile extends StatelessWidget {
           storeObj!.images!.iconUrl!,
           errorBuilder: (_, __, ___) => const Icon(Icons.error),
         ),
-        title: Text('\$${availableDeal.price.toStringAsFixed(2)}'),
+        title: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: '\$${availableDeal.price.toStringAsFixed(2)}',
+                style: TextStyles.availableDealPrice,
+              ),
+              if (availableDeal.savings > 0) const TextSpan(text: ' '),
+              if (availableDeal.savings > 0)
+                TextSpan(
+                  text: availableDeal.percentageOff,
+                  style: TextStyles.availableDealPercentage,
+                )
+            ],
+          ),
+        ),
         trailing: const Icon(Icons.arrow_forward_ios),
         onTap: () => Navigator.pushNamed(
           context,
