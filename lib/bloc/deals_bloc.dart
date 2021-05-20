@@ -51,12 +51,9 @@ class DealsBloc extends BlocBase {
   @override
   void initState() {}
 
-  Future<void> fetchBestDeals([int pageNumber = 0]) async {
-    final newDeals =
-        bestDeals != null ? List<DealModel>.from(bestDeals!) : <DealModel>[];
-    final fetchedDeals = await apiRepository.getDeals(pageNumber: pageNumber);
-    newDeals.addAll(fetchedDeals);
-    _bestDealsController.sink.add(newDeals);
+  Future<void> fetchBestDeals() async {
+    final fetchedDeals = await apiRepository.getDeals();
+    _bestDealsController.sink.add(fetchedDeals);
   }
 
   Future<void> fetchRecentDeals([int pageNumber = 0]) async {
