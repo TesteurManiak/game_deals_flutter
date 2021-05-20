@@ -5,17 +5,17 @@ import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/deal_item.dart';
 
-class RecentDealsList extends StatefulWidget {
+class BestDealsList extends StatefulWidget {
   final double height;
   final double width;
 
-  const RecentDealsList({this.height = 212.0, this.width = double.maxFinite});
+  const BestDealsList({this.height = 212.0, this.width = double.maxFinite});
 
   @override
-  State<StatefulWidget> createState() => _RecentDealsListState();
+  State<StatefulWidget> createState() => _BestDealsListState();
 }
 
-class _RecentDealsListState extends State<RecentDealsList> {
+class _BestDealsListState extends State<BestDealsList> {
   late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
 
   @override

@@ -4,7 +4,7 @@ import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/models/deal_model.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/other_deals.dart';
-import 'package:maniak_game_deals/ui/home_page/widgets/recent_deals_list.dart';
+import 'package:maniak_game_deals/ui/home_page/widgets/best_deals_list.dart';
 import 'package:maniak_game_deals/ui/home_page/widgets/search_bar.dart';
 import 'package:maniak_game_deals/ui/see_all_page/see_all_page.dart';
 
@@ -19,7 +19,7 @@ class HomeContent extends StatelessWidget {
       children: [
         if (Responsive.isDesktop(context)) SearchBar(),
         if (Responsive.isDesktop(context)) const SizedBox(height: 24),
-        const RecentDealsList(),
+        const BestDealsList(),
         const SizedBox(height: 24),
         StreamBuilder<List<DealModel>?>(
           stream: _dealsBloc.onRecentDealsChanged,
