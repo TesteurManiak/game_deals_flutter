@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/deals_bloc.dart';
@@ -16,7 +17,19 @@ class BestDealsList extends StatefulWidget {
 }
 
 class _BestDealsListState extends State<BestDealsList> {
+  final _controller = CarouselController();
+
   late final DealsBloc _dealsBloc = BlocProvider.of<DealsBloc>(context);
+
+  void _onPointerSignal(PointerSignalEvent event) {
+    if (event is PointerScrollEvent) {
+      if (event.scrollDelta.dy > 0) {
+        _controller.nextPage();
+      } else {
+        _controller.previousPage();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +43,20 @@ class _BestDealsListState extends State<BestDealsList> {
             return const CircularProgressIndicator();
           }
           if (snapshot.data!.isEmpty) return const Text('No deals');
-          return CarouselSlider(
-            options: CarouselOptions(
-              enableInfiniteScroll: false,
-              enlargeCenterPage: true,
-              height: widget.height,
-              viewportFraction: 0.7,
+          return Listener(
+            onPointerSignal: _onPointerSignal,
+            child: CarouselSlider(
+              carouselController: _controller,
+              options: CarouselOptions(
+                enableInfiniteScroll: false,
+                enlargeCenterPage: true,
+                height: widget.height,
+                viewportFraction: 0.7,
+              ),
+              items: snapshot.data!
+                  .map<Widget>((e) => DealItem(e, widget.height))
+                  .toList(),
             ),
-            items: snapshot.data!
-                .map<Widget>((e) => DealItem(e, widget.height))
-                .toList(),
           );
         },
       ),
