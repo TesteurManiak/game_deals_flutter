@@ -29,7 +29,7 @@ No release planned. You will need to build the iPA yourself.
 ### Design
 
 * [ ] Application icon and favicon
-* [ ] Web Spinner
+* [x] Web Spinner
 * [ ] Add some more animations
 * [ ] Dark theme
 
@@ -68,7 +68,7 @@ No release planned. You will need to build the iPA yourself.
 
 * [x] Lazy loading
 * [x] Search
-* [ ] Filters
+* [x] Filters
 * [ ] Deal's Data (ex: price evolution chart)
 * [ ] Wishlist
 * [ ] Profile/Settings

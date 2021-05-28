@@ -9,6 +9,7 @@ import 'package:maniak_game_deals/models/search_result.dart';
 import 'package:maniak_game_deals/ui/common/responsive.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/filters_dialog.dart';
 import 'package:maniak_game_deals/ui/search_page/widgets/search_tile.dart';
+import 'package:async/async.dart';
 
 class SearchPage extends StatefulWidget {
   static const routeName = '/search';
@@ -23,6 +24,21 @@ class _SearchPageState extends State<SearchPage> {
   late final _gamesBloc = BlocProvider.of<GamesBloc>(context);
   late final _dealsBloc = BlocProvider.of<DealsBloc>(context);
   late final _filtersBloc = BlocProvider.of<FiltersBloc>(context);
+  late final _timer =
+      RestartableTimer(const Duration(milliseconds: 500), _filterList);
+
+  void _filterList([bool checkLength = true]) {
+    if (checkLength && _controller.text.length < 3) return;
+    if (_filtersBloc.filters != null) {
+      _dealsBloc
+          .fetchFilteredDeals(context, _controller.text)
+          .then((value) => _filtersBloc.updateSearchResults(value));
+    } else {
+      _gamesBloc
+          .fetchGames(_controller.text)
+          .then((value) => _filtersBloc.updateSearchResults(value));
+    }
+  }
 
   void _openFiltersDialog() {
     showDialog<FiltersResponse>(
@@ -34,15 +50,11 @@ class _SearchPageState extends State<SearchPage> {
         switch (value.filtersActions) {
           case FiltersActions.filters:
             _filtersBloc.updateFilters(value.filtersModel!);
-            _dealsBloc
-                .fetchFilteredDeals(context, _controller.text)
-                .then((value) => _filtersBloc.updateSearchResults(value));
+            _filterList(false);
             break;
           case FiltersActions.reset:
             _filtersBloc.resetFilters();
-            _gamesBloc
-                .fetchGames(_controller.text)
-                .then((value) => _filtersBloc.updateSearchResults(value));
+            _filterList(false);
             break;
           default:
             break;
@@ -51,8 +63,18 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 
+  void _textfieldListener() => _timer.reset();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_textfieldListener);
+  }
+
   @override
   void dispose() {
+    _timer.cancel();
+    _controller.removeListener(_textfieldListener);
     _controller.dispose();
     _filtersBloc.resetFilters(resetSearchResults: true);
     super.dispose();
@@ -65,18 +87,8 @@ class _SearchPageState extends State<SearchPage> {
         title: TextField(
           controller: _controller,
           autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Game name or Steam ID',
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () => _gamesBloc
-                  .fetchGames(_controller.text)
-                  .then(_filtersBloc.updateSearchResults),
-            ),
-          ),
-          onSubmitted: (value) => _gamesBloc
-              .fetchGames(value)
-              .then(_filtersBloc.updateSearchResults),
+          decoration: const InputDecoration(hintText: 'Game name or Steam ID'),
+          onSubmitted: (_) => _filterList(false),
         ),
         actions: [
           IconButton(

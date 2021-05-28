@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:maniak_game_deals/models/store_enum.dart';
 import 'package:maniak_game_deals/utils/store_uri.dart';
 
@@ -19,4 +20,12 @@ class Endpoints {
     }
     return StoreUri.other(dealID);
   }
+}
+
+class Consts {
+  static const navigationItems = <BottomNavigationBarItem>[
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+    BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Wishlist'),
+    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+  ];
 }
