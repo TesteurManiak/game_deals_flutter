@@ -87,3 +87,5 @@ No release planned. You will need to build the iPA yourself.
 
 * [Phap Nguyen Huu](https://www.sketchappsources.com/free-source/2911-game-store-redesign-sketch-freebie-resource.html) - Design Inspiration
 * [CheapShark](https://www.cheapshark.com/) - API
+
+<a href="https://www.buymeacoffee.com/guillaumeroux" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
