@@ -4,7 +4,7 @@ import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/style/my_colors.dart';
 import 'package:maniak_game_deals/ui/common/app_logo.dart';
-import 'package:maniak_game_deals/ui/home_page/home_page.dart';
+import 'package:maniak_game_deals/ui/root_page/root_page.dart';
 
 class SplashPage extends StatefulWidget {
   static const routeName = '/splash';
@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _loadAllData().then(
-        (_) => Navigator.pushReplacementNamed(context, HomePage.routeName));
+        (_) => Navigator.pushReplacementNamed(context, RootPage.routeName));
   }
 
   @override

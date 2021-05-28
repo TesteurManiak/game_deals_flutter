@@ -4,6 +4,7 @@ import 'package:maniak_game_deals/bloc/bloc_provider.dart';
 import 'package:maniak_game_deals/bloc/deals_bloc.dart';
 import 'package:maniak_game_deals/bloc/filters_bloc.dart';
 import 'package:maniak_game_deals/bloc/games_bloc.dart';
+import 'package:maniak_game_deals/bloc/navigation_bloc.dart';
 import 'package:maniak_game_deals/bloc/stores_bloc.dart';
 import 'package:maniak_game_deals/style/themes.dart';
 import 'package:maniak_game_deals/ui/splash_page/splash_page.dart';
@@ -13,6 +14,7 @@ void main() {
   runApp(
     BlocProvider(
       blocs: <BlocBase>[
+        NavigationBloc(),
         DealsBloc(),
         StoresBloc(),
         GamesBloc(),
