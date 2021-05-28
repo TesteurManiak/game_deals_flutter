@@ -87,18 +87,8 @@ class _SearchPageState extends State<SearchPage> {
         title: TextField(
           controller: _controller,
           autofocus: true,
-          decoration: InputDecoration(
-            hintText: 'Game name or Steam ID',
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () => _gamesBloc
-                  .fetchGames(_controller.text)
-                  .then(_filtersBloc.updateSearchResults),
-            ),
-          ),
-          onSubmitted: (value) => _gamesBloc
-              .fetchGames(value)
-              .then(_filtersBloc.updateSearchResults),
+          decoration: const InputDecoration(hintText: 'Game name or Steam ID'),
+          onSubmitted: (_) => _filterList(false),
         ),
         actions: [
           IconButton(
