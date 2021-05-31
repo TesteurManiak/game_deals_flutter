@@ -80,8 +80,17 @@ No release planned. You will need to build the iPA yourself.
 
 ## Screenshots
 
-![Home](screenshots/web/home.png)
-![New](screenshots/web/new.png)
+### Mobile
+
+<img src="screenshots/mobile/home.png" height="400"/>
+<img src="screenshots/mobile/new.png" height="400"/>
+<img src="screenshots/mobile/search.png" height="400"/>
+
+### Web
+
+<img src="screenshots/web/home.png" height="400"/>
+<img src="screenshots/web/new.png" height="400"/>
+<img src="screenshots/web/search.png" height="400"/>
 
 ## Credits
 
