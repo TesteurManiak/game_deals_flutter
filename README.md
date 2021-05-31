@@ -88,7 +88,6 @@ No release planned. You will need to build the iPA yourself.
 <img src="screenshots/mobile/search.png" height="400"/>
 </p>
 
-
 ### Web
 
 <img src="screenshots/web/home.png" height="400"/>
