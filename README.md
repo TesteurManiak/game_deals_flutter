@@ -82,9 +82,9 @@ No release planned. You will need to build the iPA yourself.
 
 ### Mobile
 
-<img src="screenshots/mobile/home.png" height="400"/>
-<img src="screenshots/mobile/new.png" height="400"/>
-<img src="screenshots/mobile/search.png" height="400"/>
+<img align="left" src="screenshots/mobile/home.png" height="400"/>
+<img align="left" src="screenshots/mobile/new.png" height="400"/>
+<img align="left" src="screenshots/mobile/search.png" height="400"/>
 
 ### Web
 
